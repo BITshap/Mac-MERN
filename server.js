@@ -3,7 +3,13 @@ const mongoose = require("mongoose");
 
 const app = express();
 
-mongoose.connect("mongodb://localhost:27017/mydb");
+mongoose.connect("mongodb://localhost:27017/JournalMe")
+.then(()=>{
+  console.log("mongodb connected");
+})
+.catch(()=>{
+  console.log('failed');
+});
 
 app.use(express.static("public"));
 
