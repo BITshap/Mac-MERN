@@ -1,12 +1,19 @@
 import './App.css';
-import Users from './Views/users.jsx'
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+import Login from './Views/login.jsx';
+import Users from './Views/users.jsx';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-        <Users/>
-    </div>
+    <Router>
+    <div>
+      <Routes>
+      <Route exact path="/" element={<Login />}></Route>
+      <Route path="/users" element={<Users />}></Route>
+      </Routes>    
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;
