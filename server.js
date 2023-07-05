@@ -77,6 +77,7 @@ app.post('/login', async (req, res) => {
     } else {
       // Return an error response for failed login attempts
       res.status(401).json({ error: 'Invalid credentials' });
+      console.log("Put in a Valid Username or Password")
     }
   } catch (error) {
     // Handle any database errors

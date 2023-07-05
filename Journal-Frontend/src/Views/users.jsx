@@ -25,10 +25,10 @@ const Users = () => {
 
   return (
     <div>
-      <h2>Leaderboard</h2>
+      <h2>Top Entries</h2>
       <ul>
         {documents.map(document => (
-          <li key={document.name}>{JSON.stringify(document.name)}</li>
+          <li key={document.name}>{JSON.stringify(document.name + ": " + document.score).slice(1, -1)}</li>
         ))}
       </ul>
     </div>
