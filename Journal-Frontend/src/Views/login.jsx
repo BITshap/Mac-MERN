@@ -21,8 +21,14 @@ const LoginForm = () => {
       // Save the token or session ID received from the response to authenticate subsequent requests
       
       localStorage.setItem('token', tokenValue);
+
+      const userId = response.data._id;
+      const score = response.data.score;
+      console.log('Your Score:', score)
+      console.log('Your Id:', userId);
+
       // Redirect to the next page or allow access to protected routes
-      navigate('/submission', {state: {username}})
+      navigate('/submission', {state: {username, userId, score}})
     } catch (error) {
       console.error('Login failed:', error);
       // Handle login error

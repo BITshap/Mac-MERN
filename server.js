@@ -4,6 +4,8 @@ const app = express();
 const mongoose = require("mongoose");
 const jwt = require('jsonwebtoken');
 const env = require('/Users/nick-shapoff/Documents/Practice-Projects/Mac-MERN/.env')
+const { ObjectId } = require('mongodb');
+
 
 const secret = env.secretKey;
 
@@ -26,8 +28,6 @@ app.use(express.json());
 const verifyToken = (req, res, next) => {
   const token = req.headers.authorization;
 
-  console.log('Authorization header:', token);
-
   if (token) {
     jwt.verify(token, secret, (error, decoded) => {
       if (error) {
@@ -44,6 +44,7 @@ const verifyToken = (req, res, next) => {
 };
 
 app.get("/users", verifyToken, async (req, res) => {
+
   try {
     const db = mongoose.connection;
     const collection = db.collection('users'); // Use your collection name here
@@ -70,10 +71,10 @@ app.post('/login', async (req, res) => {
 
     if (user) {
       // Generate a web token
-      const token = jwt.sign({ username }, secret, { expiresIn: '1h' });
+      const token = jwt.sign({ _id: user._id, score: user.score, username }, secret, { expiresIn: '1h' });
 
       // Return the token as a response
-      res.json({ token });
+      res.json({ token, _id: user._id, score: user.score});
     } else {
       // Return an error response for failed login attempts
       res.status(401).json({ error: 'Invalid credentials' });
@@ -86,16 +87,19 @@ app.post('/login', async (req, res) => {
   }
 });
 
-app.put('/users/:username', verifyToken, async (req, res) => {
-  const { username } = req.params;
+app.put('/users/:userId', verifyToken, async (req, res) => {
+  const { userId } = req.params;
   const { score } = req.body;
-
+  console.log('User Id:', userId)
+  console.log('Score:', score)
   try {
-    const db = mongoose.connection;
-    const collection = db.collection('users');
+    const collection = mongoose.connection.collection('users');
 
-    // Update the user's score based on the username
-    await collection.updateOne({ username }, { $set: { score } });
+    // Update the user's score based on the userId
+    await collection.updateOne(
+      { _id: new ObjectId(userId) },
+      { $set: { score: score } }
+    );
 
     res.status(200).json({ message: 'User score updated successfully' });
   } catch (error) {

@@ -4,9 +4,10 @@ import axios from 'axios';
 
 const Submission = () => {
   const location = useLocation();
-  const { username } = location.state || {};
+  const { username, userId, score} = location.state || {};
+  console.log('userId:', userId);
+  console.log('Current Score:', score)
   const navigate = useNavigate();
-
   const token = localStorage.getItem('token');
 
   useEffect(() => {
@@ -28,10 +29,11 @@ const Submission = () => {
     event.preventDefault();
 
     try {
-      const updatedScore = username.score + 1;
+      const updatedScore = score + 1;
+      console.log(updatedScore)
 
       await axios.put(
-        `http://localhost:3001/users/${username}`,
+        `http://localhost:3001/users/${userId}`,
         { score: updatedScore },
         {
           headers: {
@@ -42,7 +44,6 @@ const Submission = () => {
 
       // Handle successful submission
       alert('Entry Complete!');
-      console.log(username.score)
       navigate('/users');
     } catch (error) {
       console.error('Submission failed:', error);
