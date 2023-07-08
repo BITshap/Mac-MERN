@@ -22,7 +22,7 @@ const LoginForm = () => {
       
       localStorage.setItem('token', tokenValue);
       // Redirect to the next page or allow access to protected routes
-      navigate('/users')
+      navigate('/submission', {state: {username}})
     } catch (error) {
       console.error('Login failed:', error);
       // Handle login error
