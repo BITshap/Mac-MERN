@@ -86,6 +86,24 @@ app.post('/login', async (req, res) => {
   }
 });
 
+app.put('/users/:username', verifyToken, async (req, res) => {
+  const { username } = req.params;
+  const { score } = req.body;
+
+  try {
+    const db = mongoose.connection;
+    const collection = db.collection('users');
+
+    // Update the user's score based on the username
+    await collection.updateOne({ username }, { $set: { score } });
+
+    res.status(200).json({ message: 'User score updated successfully' });
+  } catch (error) {
+    console.error('Error updating user score:', error);
+    res.status(500).json({ error: 'Error updating user score' });
+  }
+});
+
 
 app.listen(3001, () => {
   console.log("Server started on port 3001");

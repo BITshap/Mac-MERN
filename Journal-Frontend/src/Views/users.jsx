@@ -1,10 +1,26 @@
 import React, { useEffect, useState } from 'react';
+import {useNavigate} from 'react-router-dom'
 import axios from 'axios';
 
 const Users = () => {
   const [documents, setDocuments] = useState([]);
-
+  const navigate = useNavigate()
   const token = localStorage.getItem('token');
+
+  useEffect(() => {
+    if (!token) {
+      const handleNavigation = () => {
+        navigate('/');
+      };
+  
+      const alertTimeout = setTimeout(() => {
+        alert('Authorization is required. Please log in.');
+        handleNavigation();
+      }, 0);
+  
+      return () => clearTimeout(alertTimeout);
+    }
+  }, [token, navigate]);
 
   useEffect(() => {
     
