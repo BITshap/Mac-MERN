@@ -39,11 +39,14 @@ const Users = () => {
       });
   }, [token]);
 
+  const sortedDocuments = documents.sort((a, b) => b.score - a.score)
   return (
     <div>
       <h2>Top Entries</h2>
       <ul>
-        {documents.map(document => (
+
+
+        {sortedDocuments.map(document => (
           <li key={document.name}>{JSON.stringify(document.name + ": " + document.score).slice(1, -1)}</li>
         ))}
       </ul>
