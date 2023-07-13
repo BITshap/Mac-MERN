@@ -3,14 +3,14 @@ const cors = require('cors');
 const app = express();
 const mongoose = require("mongoose");
 const jwt = require('jsonwebtoken');
-const env = require('/Users/nick-shapoff/Documents/Practice-Projects/Mac-MERN/.env')
+const env = require('./.env')
 const { ObjectId } = require('mongodb');
 
-
+const URL = env.mongoURL
 const secret = env.secretKey;
 
 //basic connection
-mongoose.connect("mongodb://localhost:27017/JournalMe", {
+mongoose.connect(URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
