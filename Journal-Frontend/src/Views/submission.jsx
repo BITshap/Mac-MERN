@@ -54,7 +54,9 @@ const Submission = () => {
   return (
     <div>
       <h1>Welcome {username}!</h1>
-      <h2>Have you completed an entry?</h2>
+      <h2>Feel free to write down some thoughts..</h2>
+      <input></input>
+      <h3>Have you completed an entry?</h3>
       <form onSubmit={handleSubmission}>
         {/* Submission form fields */}
         <button type="submit">Yes</button>
