@@ -97,16 +97,20 @@ app.put('/users/:userId', verifyToken, async (req, res) => {
   try {
     const collection = mongoose.connection.collection('users');
 
-    const updateQuery = {
-      $set: {
-        score: score,
-      }
-    }
-
+    const updateQuery = {};
+    
     if (text && text !== '') {
+      updateQuery.$set = {
+        score: score,
+      };
+
       updateQuery.$push = {
         logs: text,
         timestamps: timestamp,
+      };
+    } else {
+      updateQuery.$set = {
+        score: score - 1,
       };
     }
 
