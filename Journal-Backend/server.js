@@ -50,7 +50,7 @@ app.get("/users", verifyToken, async (req, res) => {
     const collection = db.collection('users'); // Use your collection name here
 
     // Find all documents in the collection
-    const documents = await collection.find().toArray();
+    const documents = await collection.find({}).toArray();
 
     // Send the retrieved documents as JSON response
     res.json(documents);
@@ -89,16 +89,31 @@ app.post('/login', async (req, res) => {
 
 app.put('/users/:userId', verifyToken, async (req, res) => {
   const { userId } = req.params;
-  const { score } = req.body;
+  const { score, text, timestamp } = req.body;
   console.log('User Id:', userId)
   console.log('Score:', score)
+  console.log('Entry:', text);
+  console.log('Timestamp:', timestamp)
   try {
     const collection = mongoose.connection.collection('users');
+
+    const updateQuery = {
+      $set: {
+        score: score,
+      }
+    }
+
+    if (text && text !== '') {
+      updateQuery.$push = {
+        logs: text,
+        timestamps: timestamp,
+      };
+    }
 
     // Update the user's score based on the userId
     await collection.updateOne(
       { _id: new ObjectId(userId) },
-      { $set: { score: score } }
+      updateQuery
     );
 
     res.status(200).json({ message: 'User score updated successfully' });

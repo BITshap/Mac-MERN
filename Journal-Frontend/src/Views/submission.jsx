@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import {useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
@@ -25,6 +25,8 @@ const Submission = () => {
     }
   }, [token, navigate]);
 
+  const [text, setText] = useState('');
+
   const handleSubmission = async (event) => {
     event.preventDefault();
 
@@ -32,9 +34,26 @@ const Submission = () => {
       const updatedScore = score + 1;
       console.log(updatedScore)
 
+      const now = new Date().toLocaleDateString('en-US', {
+        month: '2-digit',
+        day: '2-digit',
+        year: 'numeric',
+      });;
+
+      /*const response = await axios.get(`http://localhost:3001/users`);
+      const users = response.data;
+      const user = users.find((user) => user._id === userId);
+  
+      const updatedLogs = [...user.logs, text];
+      const updatedTimestamps = [...user.timestamps, now]; */
+
       await axios.put(
         `http://localhost:3001/users/${userId}`,
-        { score: updatedScore },
+        { 
+          score: updatedScore,
+          timestamp: now,
+          text: text,
+        },
         {
           headers: {
             Authorization: `${token}`,
@@ -55,7 +74,7 @@ const Submission = () => {
     <div>
       <h1>Welcome {username}!</h1>
       <h2>Feel free to write down some thoughts..</h2>
-      <input></input>
+      <input value={text} onChange={(e) => setText(e.target.value)}/>
       <h3>Have you completed an entry?</h3>
       <form onSubmit={handleSubmission}>
         {/* Submission form fields */}
