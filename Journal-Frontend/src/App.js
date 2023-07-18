@@ -4,10 +4,13 @@ import Login from './Views/login.jsx';
 import Users from './Views/users.jsx';
 import Submission from './Views/submission'
 
+
+import 'normalize.css';
+
 const App = () => {
   return (
     <Router>
-    <div>
+    <div className="app-container">
       <Routes>
       <Route exact path="/" element={<Login />}></Route>
       <Route path="/users" element={<Users />}></Route>

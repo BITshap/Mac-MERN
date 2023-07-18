@@ -1,0 +1,17 @@
+.app-container {
+    background-image: url('./Images/loginpaper.jpg'); /* Replace with the actual path to your image */
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+  }
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}

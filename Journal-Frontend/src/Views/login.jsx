@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { Container, Form, Button} from 'react-bootstrap'
 
 const LoginForm = () => {
   const [username, setUsername] = useState('');
@@ -37,22 +38,25 @@ const LoginForm = () => {
 
   return (
     <div>
+      <Container>
+      <h1>Welcome to JournalMe.AI</h1>
       <h2>Login</h2>
-      <form onSubmit={handleLogin}>
-        <input
+      <Form onSubmit={handleLogin}>
+        <Form.Control
           type="text"
           placeholder="Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
-        <input
+        <Form.Control
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button type="submit">Login</button>
-      </form>
+        <Button type="submit">Login</Button>
+      </Form>
+      </Container>
     </div>
   );
 };
