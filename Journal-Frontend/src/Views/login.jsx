@@ -39,8 +39,8 @@ const LoginForm = () => {
   return (
     <div>
       <Container>
-      <h1>Welcome to JournalMe.AI</h1>
-      <h2>Login</h2>
+      <h1 id="Welcome_Text">Welcome to JournalMe.AI</h1>
+      <h2 id="Welcome_Text">Login</h2>
       <Form onSubmit={handleLogin}>
         <Form.Control
           type="text"
