@@ -63,7 +63,6 @@ const Submission = () => {
       );
 
       // Handle successful submission
-      alert('Entry Complete!');
       navigate(`/${username}/logs`, {state: {username, userId, score}});
     } catch (error) {
       console.error('Submission failed:', error);

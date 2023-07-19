@@ -32,6 +32,14 @@ const Logs = () => {
   const [timestamps, setTimestamps] = useState([])
   const [score, setScore] = useState(0)
 
+  const formatDate = (date) => {
+    return date.toLocaleDateString('en-US', {
+      month: '2-digit',
+      day: '2-digit',
+      year: 'numeric',
+    });
+  };
+
   useEffect(() => {
     const getLogs = async () => {
       const response = await axios.get(`http://localhost:3001/users/${userId}/logs`, {
@@ -61,8 +69,7 @@ const Logs = () => {
      {/* Display logs */}
       {logs.map((log, index) => (
         <div key={index}>
-          <p>Log: {log}</p>
-          <p>Timestamp: {timestamps[index]}</p>
+          <p>{log}  {formatDate(new Date(timestamps[index]))}</p>
         </div>
       ))} 
       <Button onClick={() => navigate('/users')}>Let's see our Users</Button>

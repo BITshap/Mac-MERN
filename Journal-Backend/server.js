@@ -9,6 +9,7 @@ const userController = require('./controllers/userController');
 
 const URL = env.mongoURL;
 const secret = env.secretKey;
+const APIKEY = env.openAiKey;
 
 // Basic connection
 mongoose.connect(URL, {
