@@ -1,8 +1,9 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'
-import Login from './Views/login.jsx';
-import Users from './Views/users.jsx';
-import Submission from './Views/submission'
+import Logs from "./Views/logs"
+import Login from "./Views/login.jsx"
+import Users from "./Views/users.jsx"
+import Submission from "./Views/submission"
 
 
 import 'normalize.css';
@@ -15,6 +16,7 @@ const App = () => {
       <Route exact path="/" element={<Login />}></Route>
       <Route path="/users" element={<Users />}></Route>
       <Route path="/submission" element={<Submission />}></Route>
+      <Route path="/:username/logs" element={<Logs />}></Route>
       </Routes>    
       </div>
     </Router>

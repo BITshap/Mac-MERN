@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {useLocation, useNavigate } from 'react-router-dom';
+import {Button} from 'react-bootstrap'
 import axios from 'axios';
 
 const Submission = () => {
@@ -63,7 +64,7 @@ const Submission = () => {
 
       // Handle successful submission
       alert('Entry Complete!');
-      navigate('/users');
+      navigate(`/${username}/logs`, {state: {username, userId, score}});
     } catch (error) {
       console.error('Submission failed:', error);
       // Handle submission error
@@ -72,14 +73,14 @@ const Submission = () => {
 
   return (
     <div>
-      <h1>Welcome {username}!</h1>
-      <h2>Feel free to write down some thoughts..</h2>
+      <h1 id="Welcome_Text">Welcome {username}!</h1>
+      <h2 id="Welcome_Text">Feel free to write down some thoughts..</h2>
       <input value={text} onChange={(e) => setText(e.target.value)}/>
-      <h3>Have you completed an entry?</h3>
+      <h3 id="Welcome_Text">Have you completed an entry?</h3>
       <form onSubmit={handleSubmission}>
         {/* Submission form fields */}
-        <button type="submit">Yes</button>
-        <button type="button">No</button>
+        <Button type="submit">Yes</Button>
+        <Button type="button">No</Button>
       </form>
     </div>
   );

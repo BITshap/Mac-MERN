@@ -42,8 +42,8 @@ const Users = () => {
   const sortedDocuments = documents.sort((a, b) => b.score - a.score)
   return (
     <div>
-      <h2>Top Entries</h2>
-      <ul>
+      <h2 id="Welcome_Text">Top Entries</h2>
+      <ul id="Welcome_Text">
 
 
         {sortedDocuments.map(document => (
