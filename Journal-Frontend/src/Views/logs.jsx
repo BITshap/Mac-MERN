@@ -57,7 +57,7 @@ const Logs = () => {
   return (
     <div id="Welcome_Text">
     <h1 id="Welcome_Text"> {username}'s most recent entries:</h1>
-    <h2 id="Welecom_Text">Your individual score: {score}</h2>
+    <h2 id="Welecom_Text">Your individual score too: {score}</h2>
      {/* Display logs */}
       {logs.map((log, index) => (
         <div key={index}>
