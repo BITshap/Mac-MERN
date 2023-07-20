@@ -6,10 +6,11 @@ const jwt = require('jsonwebtoken');
 const env = require('./.env');
 
 const userController = require('./controllers/userController');
+const apiCallsController = require('./controllers/apiCallsController')
 
 const URL = env.mongoURL;
 const secret = env.secretKey;
-const APIKEY = env.openAiKey;
+//const APIKEY = env.openAiKey;
 
 // Basic connection
 mongoose.connect(URL, {
@@ -49,7 +50,27 @@ const verifyToken = (req, res, next) => {
 app.get("/users", verifyToken, userController.getUsers);
 app.get("/users/:userId/logs", verifyToken, userController.getUserLogs);
 app.post("/login", userController.loginUser);
+
+app.post('/Shielas-response', verifyToken, async (req, res) => {
+  try {
+    const { text } = req.body;
+    console.log('Received text:', text);
+
+    // Call the OpenAI API using your utility function
+    const responseText = await apiCallsController.getOpenAIResponse(text);
+
+    console.log('Final response:', responseText);
+
+    // Send the response back to the client
+    res.json({ responseText });
+  } catch (error) {
+    console.error('Error processing the request:', error);
+    res.status(500).json({ error: 'An error occurred while processing the request.' });
+  }
+});
+
 app.put("/users/:userId", verifyToken, userController.updateUserScore);
+
 
 app.listen(3001, () => {
   console.log("Server started on port 3001");

@@ -28,11 +28,14 @@ const Submission = () => {
 
   const [text, setText] = useState('');
 
-  const handleSubmission = async (event) => {
-    event.preventDefault();
+  const handleSubmission = async (event, action) => {
+    if (event) {
+      event.preventDefault();
+    }
 
     try {
       const updatedScore = score + 1;
+
       console.log(updatedScore)
 
       const now = new Date().toLocaleDateString('en-US', {
@@ -62,9 +65,22 @@ const Submission = () => {
         }
       );
 
-      // Handle successful submission
-      navigate(`/${username}/logs`, {state: {username, userId, score}});
-    } catch (error) {
+      if (action === 'analyze') {
+        const response = await axios.post('http://localhost:3001/Shielas-response', 
+          {
+            text: text,
+          },
+          {
+            headers: {
+              Authorization: `${token}`,
+            },
+          }
+        );
+        navigate('/shiela-response', { state: { responseText: response.data, username, userId} });
+      } else {
+        navigate(`/${username}/logs`, { state: { username, userId} });
+      }
+   } catch (error) {
       console.error('Submission failed:', error);
       // Handle submission error
     }
@@ -79,7 +95,7 @@ const Submission = () => {
       <form onSubmit={handleSubmission}>
         {/* Submission form fields */}
         <Button type="submit">Yes</Button>
-        <Button type="button">No</Button>
+        <Button type="button" onClick={() => handleSubmission(null, 'analyze')}>Analyze</Button>
       </form>
     </div>
   );
