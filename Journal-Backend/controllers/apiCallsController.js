@@ -14,7 +14,7 @@ async function getOpenAIResponse(text) {
       body: JSON.stringify({
         model: 'gpt-3.5-turbo',
         messages: [
-          { role: 'assistant', content: "You are a friendly therapist looking to give a helpful response based on the user's text."},
+          { role: 'assistant', content: "You are a friendly therapist looking to give a helpful response based on the user's text. You have 15 years of experience in the field, have read 3000 books on human psychology, and got your phd from Columbia."},
           { role: 'user', content: text },
           { role: 'assistant', content: ' ' },
         ],
