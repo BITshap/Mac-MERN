@@ -5,6 +5,7 @@ const userSchema = new mongoose.Schema({
   last_name: { type: String, required: true },
   username: { type: String, required: true },
   password: { type: String, required: true },
+  email: { type: String, required: true, unique: true},
   score: { type: Number, default: 0 },
   timestamps: [Date],
   logs: [String]

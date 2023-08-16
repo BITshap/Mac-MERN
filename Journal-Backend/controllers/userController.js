@@ -59,6 +59,28 @@ const loginUser = async (req, res) => {
   }
 };
 
+const userSignUp = async (req, res) => {
+  const {name, last_name, email, username, password } = req.body;
+
+  try {
+    //Check if username, name + lastname combination exists
+    const existingUsername = await User.findOne({ username });
+    if (existingUsername) {
+      return res.status(409).json({ error: 'A user with this name and last name already exists' });
+    }
+
+    const user = new User({ name, last_name, email, username, password });
+    await user.save();
+
+    console.log("Nice, " + name + " joined JournalMe!")
+    res.status(201).json({ message: 'User created successfully. Please login.' });
+  } catch (error) {
+    console.error('Database error:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
+
 // Update user score
 const updateUserScore = async (req, res) => {
   const { userId } = req.params;
@@ -101,5 +123,6 @@ module.exports = {
   getUsers,
   getUserLogs,
   loginUser,
+  userSignUp,
   updateUserScore,
 };

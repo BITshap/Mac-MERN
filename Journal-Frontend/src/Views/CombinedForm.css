@@ -1,0 +1,29 @@
+/* Default styles for mobile screens */
+
+.Container {
+    padding: 1rem;
+  }
+  
+  .Form {
+    width: 100%;
+    max-width: 340px; /* Adjusted for a bit more breathing room on mobile */
+  }
+  
+  .Button {
+    width: 100%;
+  }
+  
+  /* Styles for laptop/desktop screens */
+  
+  @media (min-width: 992px) {
+    .Container {
+      padding: 2rem;
+    }
+  
+    .Form {
+      max-width: 400px;
+    }
+  }
+
+ 
+  

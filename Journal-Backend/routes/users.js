@@ -9,6 +9,8 @@ router.get('/', userController.getUsers);
 router.get('/:userId/logs', userController.getUserLogs);
 // Login route
 router.post('/login', userController.loginUser);
+//SignUp route 
+router.post('/signUp', userController.userSignUp);
 // Update user score
 router.put('/:userId', userController.updateUserScore);
 

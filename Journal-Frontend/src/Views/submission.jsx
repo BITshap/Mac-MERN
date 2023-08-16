@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {useLocation, useNavigate } from 'react-router-dom';
 import {Button} from 'react-bootstrap'
 import axios from 'axios';
@@ -10,6 +10,7 @@ const Submission = () => {
   console.log('Current Score:', score)
   const navigate = useNavigate();
   const token = localStorage.getItem('token');
+  const inputRef = useRef(null);
 
   useEffect(() => {
     if (!token) {
@@ -25,6 +26,13 @@ const Submission = () => {
       return () => clearTimeout(alertTimeout);
     }
   }, [token, navigate]);
+
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      handleSubmission(null, 'analyze');
+      event.preventDefault();
+    }
+  }
 
   const [text, setText] = useState('');
 
@@ -90,7 +98,7 @@ const Submission = () => {
     <div>
       <h1 id="Welcome_Text">Welcome {username}!</h1>
       <h2 id="Welcome_Text">Feel free to write down some thoughts..</h2>
-      <input value={text} onChange={(e) => setText(e.target.value)}/>
+      <input ref={inputRef} value={text} onChange={(e) => setText(e.target.value)} onKeyDown={handleKeyDown}/>
       <h3 id="Welcome_Text">Have you completed an entry?</h3>
       <form onSubmit={handleSubmission}>
         {/* Submission form fields */}

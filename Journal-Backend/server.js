@@ -50,6 +50,8 @@ const verifyToken = (req, res, next) => {
 app.get("/users", verifyToken, userController.getUsers);
 app.get("/users/:userId/logs", verifyToken, userController.getUserLogs);
 app.post("/login", userController.loginUser);
+app.post("/signup", userController.userSignUp);
+
 
 app.post('/Shielas-response', verifyToken, async (req, res) => {
   try {
