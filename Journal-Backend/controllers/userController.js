@@ -1,6 +1,7 @@
 const User = require('../models/user');
 const jwt = require('jsonwebtoken');
 const env = require('../.env');
+const bcrypt = require('bcrypt')
 
 const secret = env.secretKey;
 
@@ -44,14 +45,28 @@ const loginUser = async (req, res) => {
   const { username, password } = req.body;
 
   try {
-    const user = await User.findOne({ username, password });
+    const user = await User.findOne({ username });
+    console.log("Fetched user:", user);
 
     if (user) {
-      const token = jwt.sign({ _id: user._id, score: user.score, username }, secret, { expiresIn: '1h' });
-      res.json({ token, _id: user._id, score: user.score });
+      // Manually hash the incoming password
+      const hashedIncomingPassword = await bcrypt.hash(password, 9);
+      console.log("Hashed password from database:", user.password);
+      console.log("Manually hashed incoming password:", hashedIncomingPassword);
+
+      // Compare the provided password with the hashed password in the database
+      const isPasswordValid = await bcrypt.compare(password, user.password);
+      
+      if (isPasswordValid) {
+        const token = jwt.sign({ _id: user._id, score: user.score, username }, secret, { expiresIn: '1h' });
+        res.json({ token, _id: user._id, score: user.score });
+      } else {
+        res.status(401).json({ error: 'Invalid credentials' });
+        console.log("Invalid username or password");
+      }
     } else {
       res.status(401).json({ error: 'Invalid credentials' });
-      console.log("Put in a valid username or password");
+      console.log("User not found");
     }
   } catch (error) {
     console.error('Database error:', error);
@@ -59,14 +74,20 @@ const loginUser = async (req, res) => {
   }
 };
 
+
 const userSignUp = async (req, res) => {
   const {name, email, username, password } = req.body;
 
   try {
-    //Check if username, name + lastname combination exists
+    //Check if username, name combination exists
     const existingUsername = await User.findOne({ username });
     if (existingUsername) {
-      return res.status(409).json({ error: 'A user with this name and last name already exists' });
+      return res.status(409).json({ error: 'A user with this username already exists' });
+    }
+
+    const existingEmail = await User.findOne({ email });
+    if (existingEmail) {
+      return res.status(409).json({ error: 'A user with this email already exists' });
     }
 
     const user = new User({ name, email, username, password });
