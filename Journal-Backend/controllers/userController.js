@@ -60,7 +60,7 @@ const loginUser = async (req, res) => {
 };
 
 const userSignUp = async (req, res) => {
-  const {name, last_name, email, username, password } = req.body;
+  const {name, email, username, password } = req.body;
 
   try {
     //Check if username, name + lastname combination exists
@@ -69,7 +69,7 @@ const userSignUp = async (req, res) => {
       return res.status(409).json({ error: 'A user with this name and last name already exists' });
     }
 
-    const user = new User({ name, last_name, email, username, password });
+    const user = new User({ name, email, username, password });
     await user.save();
 
     console.log("Nice, " + name + " joined JournalMe!")

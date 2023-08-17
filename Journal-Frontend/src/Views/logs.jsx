@@ -72,7 +72,7 @@ const Logs = () => {
           <p>{log}  {formatDate(new Date(timestamps[index]))}</p>
         </div>
       ))} 
-      <Button onClick={() => navigate('/users')}>Let's see our Users</Button>
+      <Button onClick={() => navigate('/users')}>Universe</Button>
     </div>
   );
 };

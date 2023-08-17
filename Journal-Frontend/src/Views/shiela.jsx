@@ -32,7 +32,7 @@ const Shiela = () => {
   return (
     <div id="Welcome_Text">
       <h1>Hello {username}! My name is Shiela, your guide to thought. I try my best to help as much as possible, however please keep in mind I'm not a professional!</h1>
-      <h2>Here are some possible helpful insights:</h2>
+      <h2>Here are some helpful insights:</h2>
       <p>{stringResponse}</p>
     <div id="Custom_Button">
         <Button type="button" onClick={() =>  navigate(`/${username}/logs`, { state: { username, userId} })}>Past Entries</Button>
