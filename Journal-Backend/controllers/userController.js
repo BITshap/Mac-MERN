@@ -82,7 +82,7 @@ const userSignUp = async (req, res) => {
   const filter = new Filter();
 
   if (filter.isProfane(name) || filter.isProfane(username)) {
-    return res.status(400).json({ error: 'Please refrain from using inappropriate content.', errorType: 'INAPPROPRIATE_CONTENT' });
+    return res.status(400).json({ error: "Let's keep it classy! Please use a different name or username.", errorType: 'INAPPROPRIATE_CONTENT' });
   }
 
   const isValidEmail = (email) => {

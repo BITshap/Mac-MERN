@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Container, Form, Button, Nav, Row, Col} from 'react-bootstrap';
 import { toast, ToastContainer} from 'react-toastify';
+import Filter from "bad-words";
 import './CombinedForm.css';
 
 
@@ -13,6 +14,7 @@ const CombinedForm = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const filter = new Filter();
 
   const toastOptions = {
     position: "top-right",
@@ -33,6 +35,11 @@ const CombinedForm = () => {
     e.preventDefault();
 
     if (!isLogin) {  // For signup
+      if (filter.isProfane(name) || filter.isProfane(username)) {
+        toast.error("Let's keep it classy! Please use a different name or username.", toastOptions);
+        return;
+      }
+      
       if (name.trim() === '') {
         toast.error('Hey there! What should we call you?', toastOptions);
         return;
@@ -96,6 +103,9 @@ const CombinedForm = () => {
       } else {
         // If it's a signup error, then we inspect the errorType from the backend
         switch (error.response.data.errorType) {
+          case 'INAPPROPRIATE_CONTENT': 
+            toast.error("Let's keep it classy! Please use a different name or username.", toastOptions);
+            break;
           case 'NAME_EXISTS': 
             toast.error('A user with this name already exists.', toastOptions);
             break;
@@ -104,9 +114,6 @@ const CombinedForm = () => {
             break;
           case 'EMAIL_EXISTS': 
             toast.error('A user with this email already exists.', toastOptions);
-            break;
-          case 'INAPPROPRIATE_CONTENT': 
-            toast.error('Please refrain from using inappropriate content.', toastOptions);
             break;
           default:
             toast.error('An error occurred during signup. Please try again.', toastOptions);
