@@ -5,6 +5,7 @@ import Login from "./Views/login.jsx"
 import Users from "./Views/users.jsx"
 import Submission from "./Views/submission"
 import Shiela from './Views/shiela';
+import 'react-toastify/dist/ReactToastify.css';
 
 import 'normalize.css';
 

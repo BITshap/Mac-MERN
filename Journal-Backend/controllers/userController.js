@@ -79,15 +79,20 @@ const userSignUp = async (req, res) => {
   const {name, email, username, password } = req.body;
 
   try {
+
+    const existingName = await User.findOne({ name });
+    if (existingName) {
+      return res.status(409).json({ error: 'A user with this name already exists', errorType: 'NAME_EXISTS' });
+    }
     //Check if username, name combination exists
     const existingUsername = await User.findOne({ username });
     if (existingUsername) {
-      return res.status(409).json({ error: 'A user with this username already exists' });
+      return res.status(409).json({ error: 'A user with this username already exists', errorType: 'USERNAME_EXISTS' });
     }
 
     const existingEmail = await User.findOne({ email });
     if (existingEmail) {
-      return res.status(409).json({ error: 'A user with this email already exists' });
+      return res.status(409).json({ error: 'A user with this email already exists', errorType: 'EMAIL_EXISTS' });
     }
 
     const user = new User({ name, email, username, password });

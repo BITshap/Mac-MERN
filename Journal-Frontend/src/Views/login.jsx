@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { Container, Form, Button, Nav, Row, Col } from 'react-bootstrap';
+import { Container, Form, Button, Nav, Row, Col} from 'react-bootstrap';
+import { toast, ToastContainer} from 'react-toastify';
 import './CombinedForm.css';
+
 
 const CombinedForm = () => {
   const [isLogin, setIsLogin] = useState(true);  // Default to login
@@ -43,10 +45,43 @@ const CombinedForm = () => {
       }
     } catch (error) {
       console.error(isLogin ? 'Login error:' : 'Signup error:', error);
+
+      const toastOptions = {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      };
+
+      if (isLogin) {
+        toast.error('Invalid username or password.', toastOptions);
+      } else {
+        // If it's a signup error, then we inspect the errorType from the backend
+        switch (error.response.data.errorType) {
+          case 'NAME_EXISTS': 
+            toast.error('A user with this name already exists.', toastOptions);
+            break;
+          case 'USERNAME_EXISTS': 
+            toast.error('A user with this username already exists.', toastOptions);
+            break;
+          case 'EMAIL_EXISTS': 
+            toast.error('A user with this email already exists.', toastOptions);
+            break;
+          default:
+            toast.error('An error occurred during signup. Please try again.', toastOptions);
+        }
+      }
     }
   };
+    
+
 
   return (
+    <>
+    <ToastContainer />
     <Container className="container-center">
       <Col xs={12} md={6} className="form-column">
         <h1 id="Welcome_Text">{isLogin ? 'Welcome back to JournalMe' : 'SignUp for JournalMe'}</h1>
@@ -83,6 +118,7 @@ const CombinedForm = () => {
         </Form>
       </Col>
     </Container>
+    </>
   );
 };
 
