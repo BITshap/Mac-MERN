@@ -1,7 +1,8 @@
 const User = require('../models/user');
 const jwt = require('jsonwebtoken');
 const env = require('../.env');
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
+const Filter = require('bad-words');
 
 const secret = env.secretKey;
 
@@ -77,6 +78,21 @@ const loginUser = async (req, res) => {
 
 const userSignUp = async (req, res) => {
   const {name, email, username, password } = req.body;
+
+  const filter = new Filter();
+
+  if (filter.isProfane(name) || filter.isProfane(username)) {
+    return res.status(400).json({ error: 'Please refrain from using inappropriate content.', errorType: 'INAPPROPRIATE_CONTENT' });
+  }
+
+  const isValidEmail = (email) => {
+    const re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    return re.test(String(email).toLowerCase());
+  };
+
+  if (!isValidEmail(email)) {
+    return res.status(400).json({ error: 'Invalid email format' });
+  }
 
   try {
 

@@ -102,8 +102,8 @@ const Submission = () => {
       <h3 id="Welcome_Text">Have you completed an entry?</h3>
       <form onSubmit={handleSubmission}>
         {/* Submission form fields */}
-        <Button type="submit">Yes</Button>
-        <Button type="button" onClick={() => handleSubmission(null, 'analyze')}>Analyze</Button>
+        <Button type="button" onClick={() => handleSubmission(null, 'analyze')}>AnalyzeMe</Button>
+        <Button type="submit">Go to Entries</Button>
       </form>
     </div>
   );

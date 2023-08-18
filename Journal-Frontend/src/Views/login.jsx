@@ -14,8 +14,52 @@ const CombinedForm = () => {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
+  const toastOptions = {
+    position: "top-right",
+    autoClose: 3000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  };
+
+  const validateEmail = (email) => {
+    const re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    return re.test(String(email).toLowerCase());
+  };
+
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+
+    if (!isLogin) {  // For signup
+      if (name.trim() === '') {
+        toast.error('Hey there! What should we call you?', toastOptions);
+        return;
+      } else if (email.trim() === '') {
+        toast.error('Share your email with us and stay connected!', toastOptions);
+        return;
+      } else if (username.trim() === '') {
+        toast.error('Oops! Seems like you forgot to enter a username.', toastOptions);
+        return;
+      } else if (password.trim() === '') {
+        toast.error('Almost there! Please set a password to secure your account.', toastOptions);
+        return;
+      } else if (!validateEmail(email)) {
+        toast.error('Drop us a line! And by line, we mean a valid email address.', toastOptions);
+        return;
+      }
+    }
+    
+    // For both login and signup
+    if (username.trim() === '') {
+      toast.error("Maybe it's just me, but my Username meant a lot to me back in the day", toastOptions);
+      return;
+    } else if (password.trim() === '') {
+      toast.error("Where's your almighty password?", toastOptions);
+      return;
+    }
+    
 
     const userData = isLogin ? 
       { username, password } :
@@ -41,20 +85,11 @@ const CombinedForm = () => {
         navigate('/submission', {state: {username, userId, score}})
       } else {
         console.log('Signup successful!');
+        toast.success('Nice to have you ' + username + ' ✨', toastOptions);
         setIsLogin(true);  // Switch to login after successful signup
       }
     } catch (error) {
       console.error(isLogin ? 'Login error:' : 'Signup error:', error);
-
-      const toastOptions = {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      };
 
       if (isLogin) {
         toast.error('Invalid username or password.', toastOptions);
@@ -69,6 +104,9 @@ const CombinedForm = () => {
             break;
           case 'EMAIL_EXISTS': 
             toast.error('A user with this email already exists.', toastOptions);
+            break;
+          case 'INAPPROPRIATE_CONTENT': 
+            toast.error('Please refrain from using inappropriate content.', toastOptions);
             break;
           default:
             toast.error('An error occurred during signup. Please try again.', toastOptions);
