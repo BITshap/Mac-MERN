@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Container, Form, Button, Nav, Row, Col} from 'react-bootstrap';
 import { toast, ToastContainer} from 'react-toastify';
+import { motion, AnimatePresence } from 'framer-motion';
 import Filter from "bad-words";
 import './CombinedForm.css';
 
@@ -13,6 +14,9 @@ const CombinedForm = () => {
   const [email, setUserEmail] = useState('')
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [userId, setUserId] = useState(null);
+  const [score, setScore] = useState(null);
+  const [showRocketAnimation, setShowRocketAnimation] = useState(false);
   const navigate = useNavigate();
   const filter = new Filter();
 
@@ -80,16 +84,15 @@ const CombinedForm = () => {
       if (isLogin) {
         const tokenValue = response.data.token; 
         // Save the token or session ID received from the response to authenticate subsequent requests
-        
         localStorage.setItem('token', tokenValue);
-  
-        const userId = response.data._id;
-        const score = response.data.score;
+
+        setShowRocketAnimation(true);
+
+        setUserId(response.data._id);
+        setScore(response.data.score);
         console.log('Your Score:', score)
         console.log('Your Id:', userId);
   
-        // Redirect to the next page or allow access to protected routes
-        navigate('/submission', {state: {username, userId, score}})
       } else {
         console.log('Signup successful!');
         toast.success('Nice to have you ' + username + ' ✨', toastOptions);
@@ -126,6 +129,36 @@ const CombinedForm = () => {
 
   return (
     <>
+    <AnimatePresence>
+  {showRocketAnimation && (
+    <div className="rocket-container">
+    <motion.div
+      initial={{ y: 100, opacity: 0 }}
+      animate={{ y: -250, opacity: 1 }}
+      exit={{ y: -500, opacity: 0 }}
+      transition={{ duration: 1.5 }}
+      onAnimationComplete={() => {
+        setShowRocketAnimation(false);
+        // Lazy load your next component or navigate
+        navigate('/submission', {state: {username, userId, score}});
+      }}
+    >
+      🚀
+      <motion.span
+        initial={{ y: 20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1, scale: [1, 1.5, 1] }}
+        transition={{
+          repeat: Infinity,
+          repeatType: 'reverse',
+          duration: 0.5,
+        }}
+      >
+        ●
+      </motion.span>
+    </motion.div>
+    </div>
+  )}
+</AnimatePresence>
     <ToastContainer />
     <Container className="container-center">
       <Col xs={12} md={6} className="form-column">

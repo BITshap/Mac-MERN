@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useRef} from 'react';
 import {useLocation, useNavigate } from 'react-router-dom';
-import {Button} from 'react-bootstrap'
+import {Button, Spinner} from 'react-bootstrap'
 import axios from 'axios';
 
 const Submission = () => {
@@ -11,6 +11,7 @@ const Submission = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem('token');
   const inputRef = useRef(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (!token) {
@@ -74,6 +75,8 @@ const Submission = () => {
       );
 
       if (action === 'analyze') {
+        setLoading(true);
+
         const response = await axios.post('http://localhost:3001/Shielas-response', 
           {
             text: text,
@@ -84,21 +87,33 @@ const Submission = () => {
             },
           }
         );
+
+        setLoading(false);
+
         navigate('/shiela-response', { state: { responseText: response.data, username, userId} });
       } else {
         navigate(`/${username}/logs`, { state: { username, userId} });
       }
    } catch (error) {
       console.error('Submission failed:', error);
+      setLoading(false);
       // Handle submission error
     }
   };
+
+  if (loading) {
+    return(
+    <Spinner className="custom-spinner" role="status">
+      <span>Loading...</span>
+    </Spinner>
+    );
+  }
 
   return (
     <div>
       <h1 id="Welcome_Text">Welcome {username}!</h1>
       <h2 id="Welcome_Text">Feel free to write down some thoughts..</h2>
-      <input ref={inputRef} value={text} onChange={(e) => setText(e.target.value)} onKeyDown={handleKeyDown}/>
+      <textarea ref={inputRef} value={text} onChange={(e) => setText(e.target.value)} onKeyDown={handleKeyDown}/>
       <h3 id="Welcome_Text">Have you completed an entry?</h3>
       <form onSubmit={handleSubmission}>
         {/* Submission form fields */}

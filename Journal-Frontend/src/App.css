@@ -21,3 +21,10 @@ body {
 #Welcome_Text {
     color: aliceblue;
 }
+
+.app-container .custom-spinner {
+  width: 3rem;
+  height: 3rem;
+  border-width: 0.25rem;
+  border-color: white;
+}
