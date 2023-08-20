@@ -46,14 +46,14 @@ const CombinedForm = () => {
       } else if (email.trim() === '') {
         toast.error('Share your email with us and stay connected!', toastOptions);
         return;
+      } else if (!validateEmail(email)) {
+        toast.error('Drop us a line! And by line, we mean a valid email address.', toastOptions);
+        return;
       } else if (username.trim() === '') {
         toast.error('Oops! Seems like you forgot to enter a username.', toastOptions);
         return;
       } else if (password.trim() === '') {
         toast.error('Almost there! Please set a password to secure your account.', toastOptions);
-        return;
-      } else if (!validateEmail(email)) {
-        toast.error('Drop us a line! And by line, we mean a valid email address.', toastOptions);
         return;
       }
     }
