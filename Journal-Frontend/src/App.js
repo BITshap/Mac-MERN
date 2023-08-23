@@ -4,6 +4,7 @@ import Logs from "./Views/logs"
 import Login from "./Views/login.jsx"
 import Users from "./Views/users.jsx"
 import Shiela from './Views/shiela';
+import RocketSpinner from './Views/RocketSpinner';
 import 'react-toastify/dist/ReactToastify.css';
 import 'normalize.css';
 import './App.css';
@@ -16,7 +17,7 @@ const App = () => {
   return (
     <Router>
       <div className="app-container">
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<RocketSpinner />}>
           <Routes>
             <Route exact path="/" element={<Login />} />
             <Route path="/users" element={<Users />} />

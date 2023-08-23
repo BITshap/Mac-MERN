@@ -22,6 +22,14 @@ body {
     color: aliceblue;
 }
 
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px; /* Adjust this value if needed */
+  margin: 20px 0; /* Adds some vertical spacing before and after the spinner */
+}
+
 .app-container .custom-spinner {
   width: 3rem;
   height: 3rem;

@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useRef} from 'react';
 import {useLocation, useNavigate } from 'react-router-dom';
-import {Button, Spinner} from 'react-bootstrap'
+import {Button} from 'react-bootstrap'
+import RocketSpinner from './RocketSpinner';
 import axios from 'axios';
 
 const Submission = () => {
@@ -103,9 +104,7 @@ const Submission = () => {
 
   if (loading) {
     return(
-    <Spinner className="custom-spinner" role="status">
-      <span>Loading...</span>
-    </Spinner>
+    <RocketSpinner />
     );
   }
 

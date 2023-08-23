@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {useLocation, useNavigate} from 'react-router-dom';
 import {Button} from 'react-bootstrap';
+import RocketSpinner from './RocketSpinner';
 import axios from 'axios';
 
 const Logs = () => {
@@ -9,6 +10,9 @@ const Logs = () => {
   console.log('userId:', userId)
   console.log('Username:', username)
   const navigate = useNavigate();
+
+  const [loading, setLoading] = useState(true);
+
 
 
   const token = localStorage.getItem('token');
@@ -42,6 +46,7 @@ const Logs = () => {
 
   useEffect(() => {
     const getLogs = async () => {
+      try {
       const response = await axios.get(`http://localhost:3001/users/${userId}/logs`, {
         headers: {
             Authorization: `${token}`
@@ -56,22 +61,31 @@ const Logs = () => {
       setScore(score)
       setLogs(logs);
       setTimestamps(timestamps)
-    };
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching logs:", error);
+      setLoading(false);
+    }
+  };
 
-    getLogs();
-  }, [token, userId]);
+  getLogs();
+}, [token, userId]);
 
-  
   return (
-    <div id="Welcome_Text">
+    <div>
     <h1 id="Welcome_Text"> {username}'s most recent entries:</h1>
-    <h2 id="Welecom_Text">Your individual score too: {score}</h2>
-     {/* Display logs */}
-      {logs.map((log, index) => (
-        <div key={index}>
-          <p>{log}  {formatDate(new Date(timestamps[index]))}</p>
-        </div>
-      ))} 
+    <h2 id="Welcome_Text">Your individual score too: {score}</h2>
+     {loading ? (
+      <div className="spinner-container">
+      <RocketSpinner />
+      </div>
+      ) : (
+        logs.map((log, index) => (
+          <div key={index}>
+            <p id="Welcome_Text">{log} {formatDate(new Date(timestamps[index]))}</p>
+          </div>
+        ))
+      )}
       <Button onClick={() => navigate('/users')}>Universe</Button>
     </div>
   );
@@ -79,3 +93,12 @@ const Logs = () => {
 
 export default Logs;
 
+/*logs.map((log, index) => (
+  <div key={index}>
+    <p id="Welcome_Text">{log} {formatDate(new Date(timestamps[index]))}</p>
+  </div>
+))
+
+<h1 id="Welcome_Text"> {username}'s most recent entries:</h1>
+    <h2 id="Welcome_Text">Your individual score too: {score}</h2>
+*/
