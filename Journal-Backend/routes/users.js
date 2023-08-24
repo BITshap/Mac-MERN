@@ -7,6 +7,8 @@ const userController = require('../controllers/userController');
 router.get('/', userController.getUsers);
 // Get user logs by userId
 router.get('/:userId/logs', userController.getUserLogs);
+//Get Top users by score 
+router.get('/top-users', userController.getTopUsers);
 // Login route
 router.post('/login', userController.loginUser);
 //SignUp route 

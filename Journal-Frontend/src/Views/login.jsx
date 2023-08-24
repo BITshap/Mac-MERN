@@ -64,7 +64,7 @@ const CombinedForm = () => {
     
     // For both login and signup
     if (username.trim() === '') {
-      toast.error("Maybe it's just me, but my Username meant a lot to me back in the day", toastOptions);
+      toast.error("Ah, those times when our usernames were everything! Brings back memories, right?", toastOptions);
       return;
     } else if (password.trim() === '') {
       toast.error("Where's your almighty password?", toastOptions);

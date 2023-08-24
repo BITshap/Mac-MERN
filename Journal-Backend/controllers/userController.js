@@ -17,6 +17,18 @@ const getUsers = async (req, res) => {
   }
 };
 
+const getTopUsers = async (req, res) => {
+  try {
+    const users = await User.find({}).sort({ score: -1 }).limit(10);
+    res.json(users);
+  } catch (error) {
+    console.error('Failed to retrieve top users:', error);
+    res.status(500).json({ error: 'Failed to retrieve top users' });
+  }
+};
+
+
+
 // Get user logs by userId
 const getUserLogs = async (req, res) => {
   try {
@@ -164,6 +176,7 @@ const updateUserScore = async (req, res) => {
 module.exports = {
   getUsers,
   getUserLogs,
+  getTopUsers,
   loginUser,
   userSignUp,
   updateUserScore,

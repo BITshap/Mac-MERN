@@ -20,7 +20,7 @@ const App = () => {
         <Suspense fallback={<RocketSpinner />}>
           <Routes>
             <Route exact path="/" element={<Login />} />
-            <Route path="/users" element={<Users />} />
+            <Route path="/Universe" element={<Users />} />
             <Route path="/submission" element={<Submission />} />
             <Route path="/:username/logs" element={<Logs />} />
             <Route path="/shiela-response" element={<Shiela />} />

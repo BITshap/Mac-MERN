@@ -86,7 +86,7 @@ const Logs = () => {
           </div>
         ))
       )}
-      <Button onClick={() => navigate('/users')}>Universe</Button>
+      <Button onClick={() => navigate('/Universe')}>Universe</Button>
     </div>
   );
 };

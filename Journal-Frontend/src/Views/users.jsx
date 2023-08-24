@@ -5,9 +5,9 @@ import RocketSpinner from './RocketSpinner';
 
 const Users = () => {
   const [documents, setDocuments] = useState([]);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const token = localStorage.getItem('token');
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
 
@@ -29,7 +29,7 @@ const Users = () => {
   useEffect(() => {
     
     // Make a GET request to your backend API
-    axios.get('http://localhost:3001/users', {
+    axios.get('http://localhost:3001/top-users', {
       headers: {
         Authorization: `${token}`,
       },
@@ -47,8 +47,7 @@ const Users = () => {
       });
   }, [token]);
 
-  const sortedDocuments = documents.sort((a, b) => b.score - a.score)
-  
+
   return (
     <div>
       <h2 id="Welcome_Text">Top Users</h2>
@@ -58,19 +57,30 @@ const Users = () => {
         <p>{error}</p>
       ) : (
         <ul id="Welcome_Text">
-          {sortedDocuments.map(document => (
-            <li key={document.name}>
-              {JSON.stringify(document.name + ": " + document.score).slice(1, -1)}
-            </li>
+          {documents.map((document, index) => {
+            let stars = "";
+            if (index === 0) stars = " ✨ ✨ ✨ ";          
+            else if (index === 1) stars = " ✨ ✨ ";       
+            else if (index === 2) stars = " ✨ ";        
+            
+            return (
+              <li key={document._id} style={{fontWeight: index < 3 ? 'bold' : 'normal'}}>
+                {`${document.name}: ${document.score}`}{stars}
+              </li>
+            );
+          })}
+          {documents.length < 10 && 
+            Array(10 - documents.length).fill().map((_, idx) => (
+              <li key={idx}>Pending...</li>
           ))}
         </ul>
       )}
     </div>
-  );
+  )
 };
 
-export default Users;
 
+export default Users;
 
 
 

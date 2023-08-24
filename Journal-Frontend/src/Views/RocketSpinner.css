@@ -1,5 +1,4 @@
-
-.loader
+/*.loader
 {
     position: relative;
     display: flex;
@@ -111,4 +110,171 @@
     {
         transform: translateY(calc(35 * 5px));
     }
+} */ 
+
+.loader
+{
+    position: relative;
+    display: flex;
+}
+.loader span
+{
+    position: relative;
+    width: 250px;
+    height: 250px;
+    background: linear-gradient(#42abff, #221f3b);
+    border: 6px solid #1a1a2e;
+    border-radius: 50%;
+    box-shadow: -8px -8px 15px rgba(255,255,255, 1),
+    8px 8px 25px rgba(0,0,0,0.15);
+    overflow: hidden;
+}
+
+.loader span::before
+{
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    box-shadow: inset 10px 10px 20px rgba(0,0,0,0.5),
+    inset -5px -5px 15px rgba(255,255,255,1);
+}
+.loader span::after
+{
+    content: '';
+    position: absolute;
+    inset: 35px;
+    background: #42abff;
+    border: 3px solid #1a1a2e;
+    border-radius: 50%;
+    box-shadow: -8px -8px 15px rgba(255,255,255, 1),
+    8px 8px 25px rgba(0,0,0,0.25),
+    inset 3px 3px 10px rgba(0,0,0,0.15),
+    inset -1px -1px 15px rgba(255,255,255,1);
+}
+.loader span i
+{
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    filter: blur(3%);
+    background: linear-gradient(#FFEB3B, #8550A1);
+    animation: animateMe 1.5s linear infinite;
+}
+@keyframes animateMe
+{
+    0%
+    {
+        transform: rotate(0deg);
+    }
+    100%
+    {
+        transform: rotate(360deg);
+    }
+}
+
+.rocket
+{
+    position: absolute; 
+    inset: 50px;
+    z-index: 10;
+    display: flex;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+.rocket .fa-rocket
+{
+    position: absolute;
+    color: #FFEB3B;
+    font-size: 3.9em;
+    -webkit-text-stroke: 2px #000;
+    animation: animateRocket 0.2s linear infinite;
+}
+@keyframes animateRocket
+{
+    0%,100%
+    {
+        transform: translate(0px,0px) rotate(-45deg);
+    }
+    50%
+    {
+        transform: translate(0,4px) rotate(-45deg);
+    }
+}
+.fa-cloud
+{
+    position: absolute;
+    top: calc(35px * var(--i));
+    Left: calc(45px * var(--i));
+    font-size: 2em;
+    color: #fff;
+    -webkit-text-stroke: 2px #000;
+    animation: 
+    animateClouds 1s linear infinite,
+    fadeOut 6.8s forwards 4s;
+    animation-delay: calc(-0.5s * var(--i));
+}
+@keyframes animateClouds
+{
+    0%
+    {
+        transform: translateY(calc(-35 * 5px));
+    }
+    100%
+    {
+        transform: translateY(calc(35 * 5px));
+    }
+}
+
+.fas.fa-star {
+    position: absolute;
+    opacity: 0; /* initially hidden */
+    font-size: 2.2em; /* adjust as needed */
+    color: #FFEB3B;
+    animation:
+    fadeIn 14.3s forwards 10s,
+    animateClouds 1s linear infinite;
+    /* Using CSS variables to position stars randomly */
+    -webkit-text-stroke: 2px #000;
+    top: calc(35px * var(--j));
+    right: calc(45px * var(--j));
+    animation-delay: calc(-0.5s * var(--j));
+}
+
+@keyframes fadeIn {
+    0%, 50%{
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    0%, 50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes skyTransition {
+    0% {
+        background: #42abff;
+    }
+    30% {
+        background: #8550A1;
+    }
+    100% {
+        background: #1a1a2e; /* dark night color */
+    }
+}
+
+
+.loader span,
+.loader span::after {
+    animation: skyTransition 8s forwards 3s; /* starts the transition after 3 seconds */
 }

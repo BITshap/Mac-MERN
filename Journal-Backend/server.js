@@ -48,6 +48,7 @@ const verifyToken = (req, res, next) => {
 
 // Users Routes
 app.get("/users", verifyToken, userController.getUsers);
+app.get("/top-users", userController.getTopUsers);
 app.get("/users/:userId/logs", verifyToken, userController.getUserLogs);
 app.post("/login", userController.loginUser);
 app.post("/signup", userController.userSignUp);

@@ -10,6 +10,10 @@ const RocketSpinner = () => {
                 <i className="fas fa-cloud" style={{'--i': 1}}></i>
                 <i className="fas fa-cloud" style={{'--i': 2}}></i>
                 <i className="fas fa-cloud" style={{'--i': 3}}></i>
+                <i className="fas fa-star" style={{'--j': 1}}></i>
+                <i className="fas fa-star" style={{'--j': 2}}></i>
+                <i className="fas fa-star" style={{'--j': 3}}></i>
+                <i className="fas fa-star" style={{'--j': 4}}></i>
             </div>
             <span><i></i></span>
         </div>
