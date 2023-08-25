@@ -1,34 +1,51 @@
-import React, {useEffect} from 'react';
-import {useLocation, useNavigate} from 'react-router-dom';
-import {Button} from 'react-bootstrap';
-//import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { Button } from 'react-bootstrap';
 
 const Shiela = () => {
   const location = useLocation();
-  const { username, userId, responseText} = location.state || {};
+  const { username, userId, responseText } = location.state || {};
   const navigate = useNavigate();
-  console.log(userId)
   const token = localStorage.getItem('token');
+
+  const [responseReady, setResponseReady] = useState(false);
 
   useEffect(() => {
     if (!token) {
       const handleNavigation = () => {
         navigate('/');
       };
-  
+
       const alertTimeout = setTimeout(() => {
-        alert('Authorization is required. Please log in.');
+        toast.error('Ground control to Major Tom, we must login!');
         handleNavigation();
       }, 0);
-  
+
+      return () => clearTimeout(alertTimeout);
+    } else if (!userId || !username || !responseText) {  
+      const handleNavigation = () => {
+        navigate('/');
+      };
+
+      const alertTimeout = setTimeout(() => {
+        toast.warning("Please use the normal process rather than a domain bypass! Restart and try again"); 
+        handleNavigation();
+      }, 0);
+
       return () => clearTimeout(alertTimeout);
     }
-  }, [token, navigate]);
 
+    // If all checks pass, set responseReady to true
+    setResponseReady(true);
+  }, [token, navigate, userId, username, responseText]);
 
-  //const responseToString = JSON.stringify(responseText)
-  const stringResponse = responseText.responseText
-  console.log(stringResponse)
+  if (!responseReady) {
+    return null; // Return null or a loading indicator while waiting for the response
+  }
+
+  const stringResponse = responseText.responseText;
+
   return (
     <div id="Welcome_Text">
       <h1>Hello {username}! My name is Shiela, your guide to thought. I try my best to help as much as possible, however please keep in mind I'm not a professional!</h1>

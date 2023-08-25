@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import {useNavigate} from 'react-router-dom'
+import {useLocation, useNavigate} from 'react-router-dom'
+import {toast} from 'react-toastify';
 import axios from 'axios';
 import RocketSpinner from './RocketSpinner';
 
@@ -10,24 +11,35 @@ const Users = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const location = useLocation();
+  const { userId, username, score } = location.state || {};
+
 
   useEffect(() => {
     if (!token) {
       const handleNavigation = () => {
         navigate('/');
       };
-  
+
       const alertTimeout = setTimeout(() => {
-        alert('Authorization is required. Please log in.');
+        toast.error('Ground control to Major Tom, we must login!');
         handleNavigation();
       }, 0);
-  
+
+      return () => clearTimeout(alertTimeout);
+    } else if (!userId || !username || score === undefined) {
+      const handleNavigation = () => {
+        navigate('/');
+      };
+
+      const alertTimeout = setTimeout(() => {
+        toast.warning('Please go through the normal process and provide necessary data!');
+        handleNavigation();
+      }, 0);
+
       return () => clearTimeout(alertTimeout);
     }
-  }, [token, navigate]);
 
-  useEffect(() => {
-    
     // Make a GET request to your backend API
     axios.get('http://localhost:3001/top-users', {
       headers: {
@@ -45,7 +57,7 @@ const Users = () => {
       .finally(() => {
         setLoading(false);
       });
-  }, [token]);
+  }, [token, navigate, userId, username, score]);
 
 
   return (

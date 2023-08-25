@@ -1,12 +1,13 @@
 import React, {useState, useEffect, useRef} from 'react';
 import {useLocation, useNavigate } from 'react-router-dom';
 import {Button} from 'react-bootstrap'
+import {toast} from 'react-toastify';
 import RocketSpinner from './RocketSpinner';
 import axios from 'axios';
 
 const Submission = () => {
   const location = useLocation();
-  const { username, userId, score} = location.state || {};
+  const { username, userId, score } = location.state || {};
   console.log('userId:', userId);
   console.log('Current Score:', score)
   const navigate = useNavigate();
@@ -19,15 +20,26 @@ const Submission = () => {
       const handleNavigation = () => {
         navigate('/');
       };
-  
+
       const alertTimeout = setTimeout(() => {
-        alert('Authorization is required. Please log in.');
+        toast.error('Ground control to Major Tom, we must login!');
         handleNavigation();
       }, 0);
-  
+
+      return () => clearTimeout(alertTimeout);
+    } else if (!userId || !username || score === undefined) {
+      const handleNavigation = () => {
+        navigate('/');
+      };
+
+      const alertTimeout = setTimeout(() => {
+        toast.warning('Please go through the normal process and provide necessary data!');
+        handleNavigation();
+      }, 0);
+
       return () => clearTimeout(alertTimeout);
     }
-  }, [token, navigate]);
+  }, [token, userId, username, score, navigate]);
 
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {

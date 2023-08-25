@@ -57,7 +57,7 @@ const getUserPaginationLogs = async (req, res) => {
   try {
     const { userId } = req.params;
     const page = parseInt(req.query.page, 10) || 1; // Default is page 1 if not provided
-    const limit = parseInt(req.query.limit, 10) || 10; // Default is 10 logs per page if not provided
+    const limit = parseInt(req.query.limit, 10) || 10; // Default is 15 logs per page if not provided
 
     const user = await User.findById(userId);
 
@@ -67,13 +67,17 @@ const getUserPaginationLogs = async (req, res) => {
 
     const totalLogs = user.logs.length;
 
+    //Reversed Logs
+    const reversedLogs = [...user.logs].reverse();
+    const reversedTimestamps = [...user.timestamps].reverse();
+
     // Calculate the indices for slicing
     const startIndex = (page - 1) * limit;
     const endIndex = startIndex + limit;
 
     // Get paginated logs and timestamps
-    const logs = user.logs.slice(startIndex, endIndex);
-    const timestamps = user.timestamps.slice(startIndex, endIndex);
+    const logs = reversedLogs.slice(startIndex, endIndex);
+    const timestamps = reversedTimestamps.slice(startIndex, endIndex);
     const newScore = user.score;
 
 

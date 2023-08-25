@@ -36,3 +36,51 @@ body {
   border-width: 0.25rem;
   border-color: white;
 }
+
+
+.pagination-button {
+  margin: 5px;
+  background-color: #007BFF; /* Blue */
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.log-entry {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px; /* Increase spacing between each log entry */
+  padding: 10px 0; /* Adds some vertical padding to each log entry for better visual separation */
+  border-bottom: 1px solid #e0e0e0; /* Optional: adds a light line between entries for clearer separation */
+}
+
+.view-toggle {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  margin-right: 15px;
+  margin-left: 10px; /* Adds spacing to the right of the button, separating it from the timestamp */
+}
+
+.view-toggle:hover {
+  text-decoration: underline;
+}
+
+.log-date {
+  white-space: nowrap; /* Ensures the date doesn't break into multiple lines */
+}
+
+.logs-container {
+  max-width: 1440px; /* Adjust this value as needed */
+  width: 100%; /* Ensures it takes the full width up to 600px */
+  margin: 0 auto; /* Centers the container if it's less than the viewport width */
+}
+
+#Page_Text{
+  color: white;
+}
