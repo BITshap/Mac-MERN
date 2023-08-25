@@ -50,6 +50,7 @@ const verifyToken = (req, res, next) => {
 app.get("/users", verifyToken, userController.getUsers);
 app.get("/top-users", userController.getTopUsers);
 app.get("/users/:userId/logs", verifyToken, userController.getUserLogs);
+app.get("/users/:userId/paged-logs", userController.getUserPaginationLogs);
 app.post("/login", userController.loginUser);
 app.post("/signup", userController.userSignUp);
 

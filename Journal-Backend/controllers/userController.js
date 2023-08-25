@@ -53,6 +53,46 @@ const getUserLogs = async (req, res) => {
   }
 };
 
+const getUserPaginationLogs = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const page = parseInt(req.query.page, 10) || 1; // Default is page 1 if not provided
+    const limit = parseInt(req.query.limit, 10) || 10; // Default is 10 logs per page if not provided
+
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ error: 'User does not exist' });
+    }
+
+    const totalLogs = user.logs.length;
+
+    // Calculate the indices for slicing
+    const startIndex = (page - 1) * limit;
+    const endIndex = startIndex + limit;
+
+    // Get paginated logs and timestamps
+    const logs = user.logs.slice(startIndex, endIndex);
+    const timestamps = user.timestamps.slice(startIndex, endIndex);
+    const newScore = user.score;
+
+
+    // Return the paginated data and some additional pagination info
+    return res.json({
+      logs,
+      timestamps,
+      currentPage: page,
+      totalPages: Math.ceil(totalLogs / limit),
+      totalLogs,
+      newScore
+    });
+  } catch (error) {
+    console.error('Failed to retrieve paginated user logs:', error);
+    return res.status(500).json({ error: 'Failed to retrieve paginated user logs' });
+  }
+};
+
+
 // User login
 const loginUser = async (req, res) => {
   const { username, password } = req.body;
@@ -176,6 +216,7 @@ const updateUserScore = async (req, res) => {
 module.exports = {
   getUsers,
   getUserLogs,
+  getUserPaginationLogs,
   getTopUsers,
   loginUser,
   userSignUp,
