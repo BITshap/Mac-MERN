@@ -29,7 +29,7 @@ const Shiela = () => {
       };
 
       const alertTimeout = setTimeout(() => {
-        toast.warning("Please use the normal process rather than a domain bypass! Restart and try again"); 
+        toast.warning("Oops! Looks like you're trying to access a feature a little bit early. Please re-login!"); 
         handleNavigation();
       }, 0);
 

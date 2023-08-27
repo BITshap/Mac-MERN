@@ -51,7 +51,7 @@ const Logs = () => {
         };
 
         const alertTimeout = setTimeout(() => {
-            toast.warning('Please go through the normal process rather than a domain bypass!');
+            toast.warning("Oops! Looks like you're trying to access a feature a little bit early. Please re-login!");
             handleNavigation();
         }, 0);
 
@@ -80,6 +80,9 @@ const Logs = () => {
     }
 }, [token, userId, username, currentPage, navigate]);
 
+const handleBackToLogs = () => {
+  navigate('/submission', {state: {username, userId, score}});
+};
 
 return (
   <div>
@@ -124,6 +127,9 @@ return (
         </div>
       </>
     )}
+    <Button type="button" onClick={handleBackToLogs}>
+        Journaling
+      </Button>
       <Button onClick={() => navigate('/Universe', { state: { userId, username, score } })}>Universe</Button>
   </div>
 );

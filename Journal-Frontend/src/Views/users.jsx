@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {useLocation, useNavigate} from 'react-router-dom'
+import {Button} from 'react-bootstrap'
 import {toast} from 'react-toastify';
 import axios from 'axios';
 import RocketSpinner from './RocketSpinner';
@@ -33,7 +34,7 @@ const Users = () => {
       };
 
       const alertTimeout = setTimeout(() => {
-        toast.warning('Please go through the normal process and provide necessary data!');
+        toast.warning("Oops! Looks like you're trying to access a feature a little bit early. Please re-login!");
         handleNavigation();
       }, 0);
 
@@ -59,10 +60,16 @@ const Users = () => {
       });
   }, [token, navigate, userId, username, score]);
 
+  //navigate back
+  const handleBackToLogs = () => {
+    navigate(`/${username}/logs`, { state: { userId, username, score} });
+  };
+
 
   return (
     <div>
-      <h2 id="Welcome_Text">Top Users</h2>
+    <div>
+    <h2 id="Welcome_Text">Top Users</h2>
       {loading ? (
         <RocketSpinner />
       ) : error ? (
@@ -87,6 +94,12 @@ const Users = () => {
           ))}
         </ul>
       )}
+    </div>
+    <div>
+      <Button type="button" onClick={handleBackToLogs}>
+        Logs
+      </Button>
+    </div>
     </div>
   )
 };

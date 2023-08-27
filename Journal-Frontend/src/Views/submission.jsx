@@ -33,7 +33,7 @@ const Submission = () => {
       };
 
       const alertTimeout = setTimeout(() => {
-        toast.warning('Please go through the normal process and provide necessary data!');
+        toast.warning("Oops! Looks like you're trying to access a feature a little bit early. Please re-login!");
         handleNavigation();
       }, 0);
 
