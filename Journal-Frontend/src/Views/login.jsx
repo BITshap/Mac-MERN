@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Container, Form, Button, Nav, Row, Col} from 'react-bootstrap';
 import { toast, ToastContainer} from 'react-toastify';
-import { motion, AnimatePresence } from 'framer-motion';
+//import { motion, AnimatePresence } from 'framer-motion';
+import RocketSpinner from './RocketSpinner';
 import Filter from "bad-words";
 import './CombinedForm.css';
 
@@ -14,9 +15,10 @@ const CombinedForm = () => {
   const [email, setUserEmail] = useState('')
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [userId, setUserId] = useState(null);
-  const [score, setScore] = useState(null);
-  const [showRocketAnimation, setShowRocketAnimation] = useState(false);
+  
+  //const [showRocketAnimation, setShowRocketAnimation] = useState(false);
+  const [showLoader, setShowLoader] = useState(false);
+
   const navigate = useNavigate();
   const filter = new Filter();
 
@@ -78,27 +80,36 @@ const CombinedForm = () => {
 
     const url = isLogin ? 'http://localhost:3001/login' : 'http://localhost:3001/signup';
 
+    if (!isLogin) {
+      setShowLoader(true);  // Show loader before signup request
+    }
+
     try {
+
       const response = await axios.post(url, userData);
 
       if (isLogin) {
-        const tokenValue = response.data.token; 
-        // Save the token or session ID received from the response to authenticate subsequent requests
-        localStorage.setItem('token', tokenValue);
+      const tokenValue = response.data.token; 
+    // Save the token or session ID received from the response to authenticate subsequent requests
+      localStorage.setItem('token', tokenValue);
 
-        setShowRocketAnimation(true);
-
-        setUserId(response.data._id);
-        setScore(response.data.score);
-        console.log('Your Score:', score)
-        console.log('Your Id:', userId);
+      const userId = response.data._id;
+      const score = response.data.score;
+    // Update states
+      setShowLoader(true); 
+      setTimeout(() => {
+        setShowLoader(false);
+        navigate('/submission', { state: { username, userId, score} });
+    }, 1500);
   
       } else {
         console.log('Signup successful!');
         toast.success('Nice to have you ' + username + ' ✨', toastOptions);
+        setShowLoader(false);
         setIsLogin(true);  // Switch to login after successful signup
       }
     } catch (error) {
+      setShowLoader(false);
       console.error(isLogin ? 'Login error:' : 'Signup error:', error);
 
       if (isLogin) {
@@ -129,75 +140,59 @@ const CombinedForm = () => {
 
   return (
     <>
-    <AnimatePresence>
-  {showRocketAnimation && (
-    <div className="rocket-container">
-    <motion.div
-      initial={{ y: 100, opacity: 0 }}
-      animate={{ y: -250, opacity: 1 }}
-      exit={{ y: -500, opacity: 0 }}
-      transition={{ duration: 1.5 }}
-      onAnimationComplete={() => {
-        setShowRocketAnimation(false);
-        // Lazy load your next component or navigate
-        navigate('/submission', {state: {username, userId, score}});
-      }}
-    >
-      🚀
-      <motion.span
-        initial={{ y: 20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1, scale: [1, 1.5, 1] }}
-        transition={{
-          repeat: Infinity,
-          repeatType: 'reverse',
-          duration: 0.5,
-        }}
-      >
-        ●
-      </motion.span>
-    </motion.div>
-    </div>
-  )}
-</AnimatePresence>
     <ToastContainer />
+
     <Container className="container-center">
-      <Col xs={12} md={6} className="form-column">
-        <h1 id="Welcome_Text">{isLogin ? 'Welcome back to JournalMe' : 'SignUp for JournalMe'}</h1>
-        <Nav variant="tabs" activeKey={isLogin ? "/login" : "/signup"} onSelect={(selectedKey) => setIsLogin(selectedKey === "/login")}>
-          <Nav.Item>
-            <Nav.Link eventKey="/login">Login</Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link eventKey="/signup">Create Account</Nav.Link>
-          </Nav.Item>
-        </Nav>
-        <Form onSubmit={handleFormSubmit}>
-          {!isLogin && (
-            <Row>
-              <Col xs={12} className="form-control-margin">
-                <Form.Control type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
-              </Col>
-              <Col xs={12} className="form-control-margin">
-                <Form.Control type="text" placeholder="Email" value={email} onChange={(e) => setUserEmail(e.target.value)} />
-              </Col>
-            </Row>
-          )}
-          <Row>
-            <Col xs={12} className="form-control-margin">
-              <Form.Control type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
-            </Col>
-            <Col xs={12} className="form-control-margin">
-              <Form.Control type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
-            </Col>
-            <Col xs={12} className="form-control-margin">
-              <Button type="submit" className="full-width-btn">{isLogin ? 'Login' : 'Signup'}</Button>
-            </Col>
-          </Row>
-        </Form>
-      </Col>
+      <Row>
+        {/* Main content */}
+        <Col xs={12} md={6} className="form-column">
+            <h1 id="Welcome_Text">{isLogin ? 'Welcome back to JournalMe' : 'SignUp for JournalMe'}</h1>
+            <Nav variant="tabs" activeKey={isLogin ? "/login" : "/signup"} onSelect={(selectedKey) => setIsLogin(selectedKey === "/login")}>
+                <Nav.Item>
+                    <Nav.Link eventKey="/login">Login</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                    <Nav.Link eventKey="/signup">Create Account</Nav.Link>
+                </Nav.Item>
+            </Nav>
+            <Form onSubmit={handleFormSubmit}>
+                {!isLogin && (
+                <Row>
+                    <Col xs={12} className="form-control-margin">
+                        <Form.Control type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
+                    </Col>
+                    <Col xs={12} className="form-control-margin">
+                        <Form.Control type="text" placeholder="Email" value={email} onChange={(e) => setUserEmail(e.target.value)} />
+                    </Col>
+                </Row>
+                )}
+                <Row>
+                    <Col xs={12} className="form-control-margin">
+                        <Form.Control type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
+                    </Col>
+                    <Col xs={12} className="form-control-margin">
+                        <Form.Control type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                    </Col>
+                    <Col xs={12} className="form-control-margin">
+                        <Button type="submit" className="full-width-btn">{isLogin ? 'Login' : 'Signup'}</Button>
+                    </Col>
+                </Row>
+            </Form>
+        </Col>
+        {/* Spinner */}
+        <Col xs={12} md={6} className="align-items-center d-flex justify-content-center">
+            {showLoader && 
+                <RocketSpinner onAnimationComplete={() => {
+                    setShowLoader(false);
+                }}
+                />
+            }
+        </Col>
+      </Row>
     </Container>
     </>
-  );
+);
+
 };
 
 export default CombinedForm;

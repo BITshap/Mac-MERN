@@ -1,0 +1,11 @@
+.shiela-container {
+    background-image: url('../Images/Sheila.jpg');/* Adjust this path as needed */
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+  }
