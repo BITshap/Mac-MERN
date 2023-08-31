@@ -57,11 +57,11 @@ app.post("/signup", userController.userSignUp);
 
 app.post('/Shielas-response', verifyToken, async (req, res) => {
   try {
-    const { text } = req.body;
+    const { text, history } = req.body;
     console.log('Received text:', text);
 
     // Call the OpenAI API using your utility function
-    const responseText = await apiCallsController.getOpenAIResponse(text);
+    const responseText = await apiCallsController.getOpenAIResponse(text, history);
 
     console.log('Final response:', responseText);
 

@@ -14,6 +14,8 @@ const Submission = () => {
   const token = localStorage.getItem('token');
   const inputRef = useRef(null);
   const [loading, setLoading] = useState(false);
+  const [apiCompleted, setApiCompleted] = useState(false);
+  const [apiResponse, setApiResponse] = useState(null);
 
   useEffect(() => {
     if (!token) {
@@ -64,7 +66,7 @@ const Submission = () => {
         month: '2-digit',
         day: '2-digit',
         year: 'numeric',
-      });;
+      });
 
       /*const response = await axios.get(`http://localhost:3001/users`);
       const users = response.data;
@@ -100,23 +102,63 @@ const Submission = () => {
             },
           }
         );
-
-        setLoading(false);
-
-        navigate('/shiela-response', { state: { responseText: response.data, username, userId} });
-      } else {
-        navigate(`/${username}/logs`, { state: { username, userId} });
-      }
-   } catch (error) {
+        
+        setApiResponse(response.data);
+        setApiCompleted(true);
+        if (typedText === "Obtaining the most optimal response for you...   ") { //care for trailing spaces. Working as of 08/29/23
+          setLoading(false); 
+        }  
+    } else {
+      navigate(`/${username}/logs`, { state: { username, userId } });
+    }
+    } catch (error) {
       console.error('Submission failed:', error);
       setLoading(false);
       // Handle submission error
     }
   };
 
+
+  const [typedText, setTypedText] = useState('');
+
+  useEffect(() => {
+    console.log("useEffect for typing is running");
+    if (loading) {
+        let i = 0;
+        const originalText = "Obtaining the most optimal response for you...   "; //care for trailing spaces. Working as of 08/29/23
+        const interval = setInterval(() => {
+            if (i < originalText.length) {
+                setTypedText((prevText) => prevText + originalText[i - 1]);
+                i++;
+            } else {
+                clearInterval(interval); // Stop the interval once the animation is done
+            }
+        }, 110);
+        
+        // Clear the interval on unmount or if conditions change
+        return () => clearInterval(interval);
+    }
+    }, [loading]);
+
+    useEffect(() => {
+      if (apiCompleted && typedText === "Obtaining the most optimal response for you...   ") { //care for trailing spaces. Working as of 08/29/23
+          navigate('/sheila-response', {
+              state: { responseText: apiResponse, username, userId, text },
+          });
+      }
+  }, [apiCompleted, typedText, navigate, apiResponse, username, userId, text]);
+
+
   if (loading) {
-    return(
-    <RocketSpinner />
+    return (
+      <div className="loading-container">
+        <div className="rocket-spinner-container">
+          <RocketSpinner />
+        </div>
+        <div className="loading-message-container">
+          <h2 id="Loading_Text">{typedText}</h2>
+        </div>
+      </div>
     );
   }
 

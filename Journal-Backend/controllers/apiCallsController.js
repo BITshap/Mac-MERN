@@ -3,8 +3,28 @@ const env = require('../.env');
 
 const API_KEY = env.openAIkey;
 
-async function getOpenAIResponse(text) {
+async function getOpenAIResponse(text, history) {
   try {
+    const initialPrompt = {
+      role: 'assistant',
+      content: "You are a friendly therapist named Sheila looking to give a helpful response based on the user's text. You have 15 years of experience in the field, have read 3000 books on human psychology, and got your phd from Columbia. Please give the user advice that will help them. Work on concision. Give concise, yet accurate responses.",
+    }
+
+    let messages = [initialPrompt];
+
+    if (history && history.length) {
+      console.log("Received History:", history);
+      messages = messages.concat(history.slice(-3));
+    }
+
+    messages.push({
+      role: 'user',
+      content: text
+    });
+
+    console.log("Messages being sent to OpenAI:", messages);
+
+
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
       headers: {
@@ -13,15 +33,14 @@ async function getOpenAIResponse(text) {
       },
       body: JSON.stringify({
         model: 'gpt-3.5-turbo',
-        messages: [
-          { role: 'assistant', content: "You are a friendly therapist looking to give a helpful response based on the user's text. You have 15 years of experience in the field, have read 3000 books on human psychology, and got your phd from Columbia."},
-          { role: 'user', content: text },
-          { role: 'assistant', content: ' ' },
-        ],
-        temperature: 0.7,
+        messages: messages, // Using the messages array directly
+        temperature: 0.7, 
       }),
     });
 
+    if (!response.ok) {
+      throw new Error(`OpenAI API returned a ${response.status} status.`);
+    }
     // Convert the response to JSON
     const responseData = await response.json();
 

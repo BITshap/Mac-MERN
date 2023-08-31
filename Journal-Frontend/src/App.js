@@ -23,7 +23,7 @@ const App = () => {
             <Route path="/Universe" element={<Users />} />
             <Route path="/submission" element={<Submission />} />
             <Route path="/:username/logs" element={<Logs />} />
-            <Route path="/shiela-response" element={<Shiela />} />
+            <Route path="/sheila-response" element={<Shiela />} />
           </Routes>
         </Suspense>
       </div>

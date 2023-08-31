@@ -9,3 +9,47 @@
     margin: 0;
     padding: 0;
   }
+
+  .chat-window {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow-y: auto; /* In case the chat becomes lengthy */
+    max-height: 400px; /* Set this to a value that works for your layout */
+}
+
+.message {
+    padding: 10px;
+    margin: 5px;
+    border-radius: 8px;
+}
+
+.message.assistant {
+    background-color: darkgrey; /* Gray */
+    text-align: left;
+}
+
+.message.user {
+    background-color: blue; /* Light Blue */
+    text-align: right;
+}
+
+.message-name {
+    font-weight: bold;
+}
+
+.input-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+input {
+    flex: 1;
+    padding: 10px;
+    margin-right: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
