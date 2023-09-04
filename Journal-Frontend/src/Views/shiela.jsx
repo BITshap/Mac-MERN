@@ -38,7 +38,7 @@ const Shiela = () => {
       }, 0);
 
       return () => clearTimeout(alertTimeout);
-    } else if (!userId || !username || !responseText) {  
+    } else if (!userId || !username || !responseText || !text ) {  
       const handleNavigation = () => {
         navigate('/');
       };
@@ -53,7 +53,7 @@ const Shiela = () => {
 
     // If all checks pass, set responseReady to true
     setResponseReady(true);
-  }, [token, navigate, userId, username, responseText]);
+  }, [token, navigate, userId, username, responseText, text]);
 
   if (!responseReady) {
     return null; // Return null or a loading indicator while waiting for the response
@@ -111,6 +111,13 @@ const Shiela = () => {
     }
   }
 
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+        event.preventDefault();  // Prevents the default behavior of Enter.
+        sendMessageToShiela();
+    }
+}
+
   return (
     <div className='shiela-container'>
     <div id="Welcome_Text">
@@ -126,7 +133,7 @@ const Shiela = () => {
         </div>
     ))}
     </div>
-      <input value={userInput} onChange={e => setUserInput(e.target.value)} placeholder="Type your message..."/>
+      <input value={userInput} onChange={e => setUserInput(e.target.value)} onKeyDown={handleKeyDown} placeholder="Type your message..."/>
       <Button onClick={sendMessageToShiela} disabled={loading}>Send</Button>
     <div id="Custom_Button">
         <Button type="button" onClick={() =>  navigate(`/${username}/logs`, { state: { username, userId} })}>Past Entries</Button>

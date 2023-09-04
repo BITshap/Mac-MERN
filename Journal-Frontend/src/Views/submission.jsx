@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useRef} from 'react';
 import {useLocation, useNavigate } from 'react-router-dom';
 import {Button} from 'react-bootstrap'
-import {toast} from 'react-toastify';
+import {toast, ToastContainer} from 'react-toastify';
 import RocketSpinner from './RocketSpinner';
 import axios from 'axios';
 
@@ -55,6 +55,11 @@ const Submission = () => {
   const handleSubmission = async (event, action) => {
     if (event) {
       event.preventDefault();
+    }
+
+    if (!text.trim()) {
+      toast.success("Every day has its story, even if it's just a line. What's yours?");
+      return;
     }
 
     try {
@@ -133,7 +138,7 @@ const Submission = () => {
             } else {
                 clearInterval(interval); // Stop the interval once the animation is done
             }
-        }, 110);
+        }, 95);
         
         // Clear the interval on unmount or if conditions change
         return () => clearInterval(interval);
@@ -163,17 +168,20 @@ const Submission = () => {
   }
 
   return (
-    <div>
-      <h1 id="Welcome_Text">Welcome {username}!</h1>
-      <h2 id="Welcome_Text">Feel free to write down some thoughts..</h2>
-      <textarea ref={inputRef} value={text} onChange={(e) => setText(e.target.value)} onKeyDown={handleKeyDown}/>
-      <h3 id="Welcome_Text">Have you completed an entry?</h3>
-      <form onSubmit={handleSubmission}>
-        {/* Submission form fields */}
-        <Button type="button" onClick={() => handleSubmission(null, 'analyze')}>AnalyzeMe</Button>
-        <Button type="submit">Go to Entries</Button>
-      </form>
-    </div>
+    <>
+      <ToastContainer />
+      <div>
+        <h1 id="Welcome_Text">Welcome {username}!</h1>
+        <h2 id="Welcome_Text">Feel free to write down some thoughts..</h2>
+        <textarea ref={inputRef} value={text} onChange={(e) => setText(e.target.value)} onKeyDown={handleKeyDown}/>
+        <h3 id="Welcome_Text">Have you completed an entry?</h3>
+        <form onSubmit={handleSubmission}>
+          {/* Submission form fields */}
+          <Button type="button" onClick={() => handleSubmission(null, 'analyze')}>AnalyzeMe</Button>
+          <Button type="submit">Go to Entries</Button>
+        </form>
+      </div>
+    </>
   );
 };
 

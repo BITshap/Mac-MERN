@@ -133,12 +133,16 @@ const loginUser = async (req, res) => {
 
 
 const userSignUp = async (req, res) => {
-  const {name, email, username, password } = req.body;
+  const {name, email, username, password, termsAccepted } = req.body;
 
   const filter = new Filter();
 
   if (filter.isProfane(name) || filter.isProfane(username)) {
     return res.status(400).json({ error: "Let's keep it classy! Please use a different name or username.", errorType: 'INAPPROPRIATE_CONTENT' });
+  }
+
+  if (!termsAccepted) {
+    return res.status(400).json({error: "You must accept the terms and conditions to proceed.", errorType: 'TERMS_NOT_ACCEPTED'});
   }
 
   const isValidEmail = (email) => {
@@ -167,7 +171,7 @@ const userSignUp = async (req, res) => {
       return res.status(409).json({ error: 'A user with this email already exists', errorType: 'EMAIL_EXISTS' });
     }
 
-    const user = new User({ name, email, username, password });
+    const user = new User({ name, email, username, password, termsAccepted: {accepted: termsAccepted, date: termsAccepted ? new Date() : null} });
     await user.save();
 
     console.log("Nice, " + name + " joined JournalMe!")

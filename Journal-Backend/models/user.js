@@ -10,7 +10,16 @@ const userSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true},
   score: { type: Number, default: 0 },
   timestamps: [Date],
-  logs: [String]
+  logs: [String],
+  termsAccepted: {
+    accepted: {
+      type: Boolean,
+      default: false 
+    },
+    date: {
+      type: Date
+    }
+  }
 });
 
 userSchema.pre('save', function(next) {

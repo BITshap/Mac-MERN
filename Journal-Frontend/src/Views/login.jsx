@@ -15,7 +15,9 @@ const CombinedForm = () => {
   const [email, setUserEmail] = useState('')
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  
+
+  const [agreeToTerms, setAgreeToTerms] = useState(false);
+
   //const [showRocketAnimation, setShowRocketAnimation] = useState(false);
   const [showLoader, setShowLoader] = useState(false);
 
@@ -61,6 +63,9 @@ const CombinedForm = () => {
       } else if (password.trim() === '') {
         toast.error('Almost there! Please set a password to secure your account.', toastOptions);
         return;
+      } else if (!agreeToTerms) { 
+        toast.error('By agreeing, you authorize JournalMe to securely store your logs. These logs will remain confidential and only accessible by you.', toastOptions);
+        return;
       }
     }
     
@@ -76,7 +81,7 @@ const CombinedForm = () => {
 
     const userData = isLogin ? 
       { username, password } :
-      { name, email, username, password };
+      { name, email, username, password, termsAccepted: agreeToTerms };
 
     const url = isLogin ? 'http://localhost:3001/login' : 'http://localhost:3001/signup';
 
@@ -129,6 +134,9 @@ const CombinedForm = () => {
           case 'EMAIL_EXISTS': 
             toast.error('A user with this email already exists.', toastOptions);
             break;
+          case 'TERMS_NOT_ACCEPTED': 
+            toast.error('Please allow JournalMe to keep your logs for only you to see.', toastOptions);
+            break;
           default:
             toast.error('An error occurred during signup. Please try again.', toastOptions);
         }
@@ -173,6 +181,18 @@ const CombinedForm = () => {
                     <Col xs={12} className="form-control-margin">
                         <Form.Control type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
                     </Col>
+                    {!isLogin && (
+                  <Row>
+                    <Col xs={12} id="Welcome_Text" className="form-control-margin">
+                      <Form.Check 
+                        type="checkbox" 
+                        label="Allow JournalMe to use Data for the purpose of providing our service"
+                        checked={agreeToTerms} 
+                        onChange={() => setAgreeToTerms(!agreeToTerms)}
+                      />
+                    </Col>
+                  </Row>
+                  )}
                     <Col xs={12} className="form-control-margin">
                         <Button type="submit" className="full-width-btn">{isLogin ? 'Login' : 'Signup'}</Button>
                     </Col>
