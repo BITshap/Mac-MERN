@@ -186,7 +186,7 @@ const CombinedForm = () => {
                     <Col xs={12} id="Welcome_Text" className="form-control-margin">
                       <Form.Check 
                         type="checkbox" 
-                        label="Allow JournalMe to use Data for the purpose of providing our service"
+                        label="Allow JournalMe to use Data for the purpose of providing the service"
                         checked={agreeToTerms} 
                         onChange={() => setAgreeToTerms(!agreeToTerms)}
                       />

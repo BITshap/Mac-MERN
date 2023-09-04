@@ -11,7 +11,7 @@ const Shiela = () => {
   const token = localStorage.getItem('token');
 
   const [responseReady, setResponseReady] = useState(false);
-  const stringResponse = responseText.responseText;
+  const stringResponse = responseText?.responseText;
 
   const [chatHistory, setChatHistory] = useState([
     { role: 'user', content: text },

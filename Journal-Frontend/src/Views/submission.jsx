@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useRef} from 'react';
 import {useLocation, useNavigate } from 'react-router-dom';
 import {Button} from 'react-bootstrap'
-import {toast, ToastContainer} from 'react-toastify';
+import {toast} from 'react-toastify';
 import RocketSpinner from './RocketSpinner';
 import axios from 'axios';
 
@@ -20,13 +20,14 @@ const Submission = () => {
   useEffect(() => {
     if (!token) {
       const handleNavigation = () => {
-        navigate('/');
+          navigate('/');
+          console.log("Re-Route!")
       };
 
       const alertTimeout = setTimeout(() => {
         toast.error('Ground control to Major Tom, we must login!');
-        handleNavigation();
-      }, 0);
+        handleNavigation(); 
+    }, 0);
 
       return () => clearTimeout(alertTimeout);
     } else if (!userId || !username || score === undefined) {
@@ -168,8 +169,6 @@ const Submission = () => {
   }
 
   return (
-    <>
-      <ToastContainer />
       <div>
         <h1 id="Welcome_Text">Welcome {username}!</h1>
         <h2 id="Welcome_Text">Feel free to write down some thoughts..</h2>
@@ -181,7 +180,6 @@ const Submission = () => {
           <Button type="submit">Go to Entries</Button>
         </form>
       </div>
-    </>
   );
 };
 
