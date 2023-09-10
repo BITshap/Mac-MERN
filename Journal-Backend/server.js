@@ -69,7 +69,13 @@ app.post('/Shielas-response', verifyToken, async (req, res) => {
     res.json({ responseText });
   } catch (error) {
     console.error('Error processing the request:', error);
-    res.status(500).json({ error: 'An error occurred while processing the request.' });
+
+    if (error.message.includes('503')) {
+      // If it's a 503 error, you can send a more specific message to the frontend.
+      return res.status(503).json({ error: "Looks like Sheila's being a little picky, try sending another message!" });
+    }
+
+    res.status(500).json({ error: 'Uh oh! The cosmos seems to be out of orbit. Try resending or restarting the app.' });
   }
 });
 

@@ -10,12 +10,32 @@
     align-items: center;
     margin: 0;
     padding: 0;
+    border: 3px solid green;
   }
 
 html,
 body {
   margin: 0;
   padding: 0;
+}
+
+.mb-50 {
+  margin-bottom: 50px;
+}
+
+.mb-100 {
+  margin-bottom: 100px;
+}
+
+/* Media query for larger screens */
+@media (min-width: 768px) {
+  .mb-50-lg {
+    margin-bottom: 100px;
+  }
+}
+
+.red-outline {
+  border: 1px solid red;
 }
 
 #Welcome_Text {
@@ -45,6 +65,11 @@ body {
   color: white;
   cursor: pointer;
 }
+
+.login-button:hover{
+  transform: scale(1.1);
+  transition-duration: 1s;
+ } 
 
 .log-entry {
   width: 100%;

@@ -39,7 +39,11 @@ async function getOpenAIResponse(text, history) {
     });
 
     if (!response.ok) {
-      throw new Error(`OpenAI API returned a ${response.status} status.`);
+      if (response.status === 503) {
+        throw new Error('Service Unavailable.');
+      } else {
+        throw new Error(`OpenAI API returned a ${response.status} status.`);
+      }
     }
     // Convert the response to JSON
     const responseData = await response.json();

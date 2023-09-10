@@ -90,8 +90,10 @@ const Shiela = () => {
       });
       
       if (!response.ok) {
-        throw new Error(`Server responded with status ${response.status}`);
-      }
+        let errorData = await response.json(); // Parse the error message from the backend
+        toast.error(errorData.error); // Display the error message using toast
+        return; // Exit the function early to prevent further processing
+    }
   
       const responseData = await response.json();
       const newMessage = responseData.responseText;

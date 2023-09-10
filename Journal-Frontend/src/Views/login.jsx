@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Container, Form, Button, Nav, Row, Col} from 'react-bootstrap';
 import { toast, ToastContainer} from 'react-toastify';
-//import { motion, AnimatePresence } from 'framer-motion';
 import RocketSpinner from './RocketSpinner';
 import Filter from "bad-words";
 import './CombinedForm.css';
@@ -18,7 +17,6 @@ const CombinedForm = () => {
 
   const [agreeToTerms, setAgreeToTerms] = useState(false);
 
-  //const [showRocketAnimation, setShowRocketAnimation] = useState(false);
   const [showLoader, setShowLoader] = useState(false);
 
   const navigate = useNavigate();
@@ -149,11 +147,10 @@ const CombinedForm = () => {
   return (
     <>
     <ToastContainer />
-
-    <Container className="container-center">
+    {/* Main Content */}
+    <Container className="container-center red-outline">
       <Row>
-        {/* Main content */}
-        <Col xs={12} md={6} className="form-column">
+        <Col xs={12} md={6} className="form-column mb-50 mb-50-lg">
             <h1 id="Welcome_Text">{isLogin ? 'Welcome back to JournalMe' : 'SignUp for JournalMe'}</h1>
             <Nav variant="tabs" activeKey={isLogin ? "/login" : "/signup"} onSelect={(selectedKey) => setIsLogin(selectedKey === "/login")}>
                 <Nav.Item>
@@ -166,19 +163,19 @@ const CombinedForm = () => {
             <Form onSubmit={handleFormSubmit}>
                 {!isLogin && (
                 <Row>
-                    <Col xs={12} className="form-control-margin">
+                    <Col xs={12} md={6} className="form-control-margin">
                         <Form.Control type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
                     </Col>
-                    <Col xs={12} className="form-control-margin">
+                    <Col xs={12} md={6} className="form-control-margin">
                         <Form.Control type="text" placeholder="Email" value={email} onChange={(e) => setUserEmail(e.target.value)} />
                     </Col>
                 </Row>
                 )}
                 <Row>
-                    <Col xs={12} className="form-control-margin">
+                    <Col xs={12} md={6} className="form-control-margin">
                         <Form.Control type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
                     </Col>
-                    <Col xs={12} className="form-control-margin">
+                    <Col xs={12} md={6}className="form-control-margin">
                         <Form.Control type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
                     </Col>
                     {!isLogin && (
@@ -194,25 +191,25 @@ const CombinedForm = () => {
                   </Row>
                   )}
                     <Col xs={12} className="form-control-margin">
-                        <Button type="submit" className="full-width-btn">{isLogin ? 'Login' : 'Signup'}</Button>
+                        <Button type="submit" className="login-button">{isLogin ? 'Login' : 'Signup'}</Button>
                     </Col>
                 </Row>
             </Form>
         </Col>
         {/* Spinner */}
-        <Col xs={12} md={6} className="align-items-center d-flex justify-content-center">
+        <Col xs={12} md={6} className="align-items-center d-flex justify-content-center red-outline">
             {showLoader && 
+
                 <RocketSpinner onAnimationComplete={() => {
                     setShowLoader(false);
-                }}
-                />
+                }} />
+                
             }
         </Col>
       </Row>
     </Container>
     </>
 );
-
 };
 
 export default CombinedForm;
