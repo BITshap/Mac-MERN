@@ -150,9 +150,9 @@ const CombinedForm = () => {
     {/* Main Content */}
     <Container className="container-center red-outline">
       <Row>
-        <Col xs={12} md={6} className="form-column mb-275 mb-275-lg">
+        <Col xs={12} md={6} className="form-column mb-300 mb-275-lg">
             <h1 id="Welcome_Text" className="center-text">{isLogin ? 'Welcome back to JournalMe' : 'SignUp for JournalMe'}</h1>
-            <Nav variant="tabs" activeKey={isLogin ? "/login" : "/signup"} onSelect={(selectedKey) => setIsLogin(selectedKey === "/login")} className="justify-content-center custom-nav">
+            <Nav className="justify-content-center custom-nav" variant="tabs" activeKey={isLogin ? "/login" : "/signup"} onSelect={(selectedKey) => setIsLogin(selectedKey === "/login")}>
                 <Nav.Item>
                     <Nav.Link eventKey="/login">Login</Nav.Link>
                 </Nav.Item>
@@ -160,10 +160,10 @@ const CombinedForm = () => {
                     <Nav.Link eventKey="/signup">Create Account</Nav.Link>
                 </Nav.Item>
             </Nav>
-            <Form onSubmit={handleFormSubmit}>
+            <Form onSubmit={handleFormSubmit} className="form-styling">
                 {!isLogin && (
-                <Row>
-                    <Col xs={12} md={6} className="form-control-margin">
+                <Row className="g-2">
+                    <Col xs={12} md={6}>
                         <Form.Control type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
                     </Col>
                     <Col xs={12} md={6} className="form-control-margin">
@@ -171,7 +171,7 @@ const CombinedForm = () => {
                     </Col>
                 </Row>
                 )}
-                <Row>
+                <Row className="g-2">
                     <Col xs={12} md={6} className="form-control-margin">
                         <Form.Control type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
                     </Col>
@@ -179,7 +179,7 @@ const CombinedForm = () => {
                         <Form.Control type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
                     </Col>
                     {!isLogin && (
-                  <Row>
+                  <Row className="g-2">
                     <Col xs={12} id="Welcome_Text" className="form-control-margin">
                       <Form.Check 
                         type="checkbox" 
@@ -197,7 +197,7 @@ const CombinedForm = () => {
             </Form>
         </Col>
         {/* Spinner */}
-        <Col xs={12} md={6} className="align-items-center d-flex justify-content-center red-outline">
+        <Col xs={12} md={6} className="login-spinner align-items-center d-flex justify-content-center red-outline">
             {showLoader && 
 
                 <RocketSpinner onAnimationComplete={() => {
@@ -216,7 +216,10 @@ export default CombinedForm;
 
 
 
-/*import React, { useState } from 'react';
+/*
+Original JSX Before Spinner etc. 
+
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Container, Form, Button} from 'react-bootstrap'

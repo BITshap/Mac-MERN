@@ -18,44 +18,67 @@ body {
   margin: 0;
   padding: 0;
 }
-
-.mb-275 {
-  margin-bottom: 275px;
+/* 
+  Sets the margin-bottom for elements to be 275px.
+*/
+.mb-300 {
+  margin-bottom: 300px;
 }
 
-.mb-275 {
-  margin-bottom: 275px;
-}
-
-/* Media query for larger screens */
+/* Media query for larger screens
+   Adjusts the margin-bottom to 275px for elements with the class of .mb-275-lg 
+   when viewed on larger screens (768px and up).
+*/
 @media (min-width: 768px) {
   .mb-275-lg {
     margin-bottom: 275px;
   }
 }
-/* Login Component Nav's */
+
+/* 
+  Styling for the Nav items inside the Login Component.
+  Adds left and right margins to separate the nav items.
+*/
+
 .custom-nav .nav-item {
-  margin-right: 50px;
-  margin-left: 50px;
+  margin-right: 40px;
+  margin-left: 40px;
+  border: 2px solid white;
+  border-radius: 20%;
 }
 
-/* Make sure the first and last items don't have the extra margin */
+/* 
+  Removes the left margin for the first nav item in the custom-nav, ensuring it's flush 
+  with the left edge or adjacent elements.
+*/
 .custom-nav .nav-item:first-child {
   margin-left: 0;
 }
+/* 
+  Removes the right margin for the last nav item in the custom-nav, ensuring it's flush 
+  with the right edge or adjacent elements.
+*/
 .custom-nav .nav-item:last-child {
   margin-right: 0;
 }
+
+/* 
+  Removes the default border at the bottom of the .nav-tabs with a custom-nav class.
+*/
 
 .nav-tabs.custom-nav {
   border-bottom: none;
 }
 
-/* This will remove the border at the bottom of the active tab. */
+/* 
+  Removes the border at the bottom of the active tab for .nav-tabs with a custom-nav class.
+  This ensures that the active tab does not have any borders, making it visually 
+  distinct without the need for the default underline.
+*/
+
 .nav-tabs.custom-nav .nav-link.active {
   border-color: transparent;
 }
-
 
 .linky-button {
   border: none;
@@ -73,12 +96,27 @@ body {
   text-align: center;
 }
 
+.row-margin{
+  margin: 10px;
+}
+
 .red-outline {
   border: 1px solid red;
 }
 
 #Welcome_Text {
     color: aliceblue;
+}
+
+@media only screen and (max-width: 768px) {
+  .login-spinner {
+    position: relative;
+    bottom: 100px;
+  }
+}
+
+.form-styling{
+  margin: 10px;
 }
 
 .spinner-container {
