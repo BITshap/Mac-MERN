@@ -151,7 +151,7 @@ const CombinedForm = () => {
     <Container className="container-center red-outline">
       <Row>
         <Col xs={12} md={6} className="form-column mb-50 mb-50-lg">
-            <h1 id="Welcome_Text">{isLogin ? 'Welcome back to JournalMe' : 'SignUp for JournalMe'}</h1>
+            <h1 id="Welcome_Text" className="center-text">{isLogin ? 'Welcome back to JournalMe' : 'SignUp for JournalMe'}</h1>
             <Nav variant="tabs" activeKey={isLogin ? "/login" : "/signup"} onSelect={(selectedKey) => setIsLogin(selectedKey === "/login")}>
                 <Nav.Item>
                     <Nav.Link eventKey="/login">Login</Nav.Link>

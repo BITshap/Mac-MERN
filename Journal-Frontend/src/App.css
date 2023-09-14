@@ -20,18 +20,22 @@ body {
 }
 
 .mb-50 {
-  margin-bottom: 50px;
+  margin-bottom: 75px;
 }
 
 .mb-100 {
-  margin-bottom: 100px;
+  margin-bottom: 125px;
 }
 
 /* Media query for larger screens */
 @media (min-width: 768px) {
   .mb-50-lg {
-    margin-bottom: 100px;
+    margin-bottom: 125px;
   }
+}
+
+.center-text{
+  text-align: center;
 }
 
 .red-outline {
