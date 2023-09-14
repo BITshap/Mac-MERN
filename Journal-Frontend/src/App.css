@@ -19,19 +19,54 @@ body {
   padding: 0;
 }
 
-.mb-50 {
-  margin-bottom: 75px;
+.mb-275 {
+  margin-bottom: 275px;
 }
 
-.mb-100 {
-  margin-bottom: 125px;
+.mb-275 {
+  margin-bottom: 275px;
 }
 
 /* Media query for larger screens */
 @media (min-width: 768px) {
-  .mb-50-lg {
-    margin-bottom: 125px;
+  .mb-275-lg {
+    margin-bottom: 275px;
   }
+}
+/* Login Component Nav's */
+.custom-nav .nav-item {
+  margin-right: 50px;
+  margin-left: 50px;
+}
+
+/* Make sure the first and last items don't have the extra margin */
+.custom-nav .nav-item:first-child {
+  margin-left: 0;
+}
+.custom-nav .nav-item:last-child {
+  margin-right: 0;
+}
+
+.nav-tabs.custom-nav {
+  border-bottom: none;
+}
+
+/* This will remove the border at the bottom of the active tab. */
+.nav-tabs.custom-nav .nav-link.active {
+  border-color: transparent;
+}
+
+
+.linky-button {
+  border: none;
+  background-color: white;
+  padding: 10px;
+  font-weight: 500;
+  border-radius: 10px;
+  cursor: pointer;
+  color: #7439db;
+  box-shadow: 0px 2px 5px 0px rgb(0 52 102 / 11%);
+  transition: all .2s ease-in-out; 
 }
 
 .center-text{

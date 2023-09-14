@@ -150,9 +150,9 @@ const CombinedForm = () => {
     {/* Main Content */}
     <Container className="container-center red-outline">
       <Row>
-        <Col xs={12} md={6} className="form-column mb-50 mb-50-lg">
+        <Col xs={12} md={6} className="form-column mb-275 mb-275-lg">
             <h1 id="Welcome_Text" className="center-text">{isLogin ? 'Welcome back to JournalMe' : 'SignUp for JournalMe'}</h1>
-            <Nav variant="tabs" activeKey={isLogin ? "/login" : "/signup"} onSelect={(selectedKey) => setIsLogin(selectedKey === "/login")}>
+            <Nav variant="tabs" activeKey={isLogin ? "/login" : "/signup"} onSelect={(selectedKey) => setIsLogin(selectedKey === "/login")} className="justify-content-center custom-nav">
                 <Nav.Item>
                     <Nav.Link eventKey="/login">Login</Nav.Link>
                 </Nav.Item>
@@ -191,7 +191,7 @@ const CombinedForm = () => {
                   </Row>
                   )}
                     <Col xs={12} className="form-control-margin">
-                        <Button type="submit" className="login-button">{isLogin ? 'Login' : 'Signup'}</Button>
+                        <Button type="submit" className="login-button linky-button">{isLogin ? 'Login' : 'Signup'}</Button>
                     </Col>
                 </Row>
             </Form>
