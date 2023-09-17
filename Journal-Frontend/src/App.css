@@ -80,6 +80,48 @@ body {
   border-color: transparent;
 }
 
+/* Default styling for nav links */
+.custom-nav .nav-link {
+  background-color: transparent; /* Default background color, assuming it's transparent */
+  color: white; /* Default text color */
+  transition: background-color 0.3s, color 0.3s; /* Smooth transition effect */
+}
+
+/* Styling for active tab or tab on hover */
+.custom-nav .nav-link.active, 
+.custom-nav .nav-link:hover {
+  background-color: white;
+  color: purple;
+  border-radius: 16%;
+}
+
+/* Optional: Add padding for better visual appearance */
+.custom-nav .nav-link {
+  padding: 10px 15px;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.shimmer-effect {
+  display: inline-block;
+  color: transparent; /* hide the original text color */
+  background: linear-gradient(110deg,white 25%, rgb(177, 49, 177) 40%, rgb(218, 116, 218) 60%, white 75%);
+  background-size: 200% 100%;
+  animation: shimmer 5s infinite;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+
+
+
 .linky-button {
   border: none;
   background-color: white;

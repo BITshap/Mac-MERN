@@ -149,10 +149,10 @@ const CombinedForm = () => {
     <ToastContainer />
     {/* Main Content */}
     <Container className="container-center red-outline">
-      <Row>
+      <Row className="mb-3">
         <Col xs={12} md={6} className="form-column mb-300 mb-275-lg">
-            <h1 id="Welcome_Text" className="center-text">{isLogin ? 'Welcome back to JournalMe' : 'SignUp for JournalMe'}</h1>
-            <Nav className="justify-content-center custom-nav" variant="tabs" activeKey={isLogin ? "/login" : "/signup"} onSelect={(selectedKey) => setIsLogin(selectedKey === "/login")}>
+            <h1 id="Welcome_Text" className="center-text">{isLogin ? 'Welcome back to ' : 'SignUp for '} <span className="shimmer-effect">JournalMe</span></h1>
+            <Nav className="justify-content-center custom-nav" activeKey={isLogin ? "/login" : "/signup"} onSelect={(selectedKey) => setIsLogin(selectedKey === "/login")}>
                 <Nav.Item>
                     <Nav.Link eventKey="/login">Login</Nav.Link>
                 </Nav.Item>
@@ -162,7 +162,7 @@ const CombinedForm = () => {
             </Nav>
             <Form onSubmit={handleFormSubmit} className="form-styling">
                 {!isLogin && (
-                <Row className="g-2">
+                <Row className="g-2 mb-2">
                     <Col xs={12} md={6}>
                         <Form.Control type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
                     </Col>
@@ -171,7 +171,7 @@ const CombinedForm = () => {
                     </Col>
                 </Row>
                 )}
-                <Row className="g-2">
+                <Row className="g-2 mb-3">
                     <Col xs={12} md={6} className="form-control-margin">
                         <Form.Control type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
                     </Col>
@@ -179,7 +179,7 @@ const CombinedForm = () => {
                         <Form.Control type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
                     </Col>
                     {!isLogin && (
-                  <Row className="g-2">
+                  <Row className="g-2 mb-3">
                     <Col xs={12} id="Welcome_Text" className="form-control-margin">
                       <Form.Check 
                         type="checkbox" 
