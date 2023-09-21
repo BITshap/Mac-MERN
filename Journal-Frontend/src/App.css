@@ -46,7 +46,6 @@ body {
   border: 2px solid white;
   border-radius: 20%;
 }
-
 /* 
   Removes the left margin for the first nav item in the custom-nav, ensuring it's flush 
   with the left edge or adjacent elements.
@@ -119,9 +118,6 @@ body {
   background-clip: text;
 }
 
-
-
-
 .linky-button {
   border: none;
   background-color: white;
@@ -150,12 +146,25 @@ body {
     color: aliceblue;
 }
 
+.semi-bold {
+  font-weight: 500;
+}
+
+/* CheckBox */
+.custom-checkbox {
+  border-color: #7439db;
+}
+
+
 @media only screen and (max-width: 768px) {
   .login-spinner {
-    position: relative;
-    bottom: 100px;
+    position: absolute;
+    bottom: 150px;
+    left: 166px;
+    width: 50px; /* Or whatever dimensions you want */
+    height: 50px; /* Or whatever dimensions you want */
   }
-}
+} 
 
 .form-styling{
   margin: 10px;
@@ -250,6 +259,9 @@ body {
   color: aliceblue;
 }
 
+.container-center {
+  position: relative;
+}
 
 
 
