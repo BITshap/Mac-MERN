@@ -62,7 +62,7 @@ const CombinedForm = () => {
         toast.error('Almost there! Please set a password to secure your account.', toastOptions);
         return;
       } else if (!agreeToTerms) { 
-        toast.error('By agreeing, you authorize JournalMe to securely store your logs. These logs will remain confidential and only accessible by you.', toastOptions);
+        toast.error('By agreeing, you authorize JournalMe to store your logs for only you to see.', toastOptions);
         return;
       }
     }

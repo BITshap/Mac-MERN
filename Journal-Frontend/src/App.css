@@ -263,6 +263,15 @@ body {
   position: relative;
 }
 
+@media (max-width: 768px) {
+  .container-center {
+    margin: 10px;
+    bottom: 5px;
+  }
+}
 
+
+
+/* play around with max-height, could be a method to not have singup and login expand upon tab switch*/
 
 
