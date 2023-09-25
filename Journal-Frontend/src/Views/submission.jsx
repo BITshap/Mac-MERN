@@ -169,7 +169,7 @@ const Submission = () => {
   }
 
   return (
-      <div className="red-outline">
+      <div className="red-outline submission-container">
         <h1 id="Welcome_Text">Welcome {username}!</h1>
         <h2 id="Welcome_Text">Feel free to write down some thoughts..</h2>
         <textarea ref={inputRef} value={text} onChange={(e) => setText(e.target.value)} onKeyDown={handleKeyDown}/>
