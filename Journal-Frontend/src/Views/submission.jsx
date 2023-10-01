@@ -170,15 +170,23 @@ const Submission = () => {
 
   return (
       <div className="red-outline submission-container">
+        <div id="Username_Text" className="red-outline">
         <h1 id="Welcome_Text">Welcome {username}!</h1>
-        <h2 id="Welcome_Text">Feel free to write down some thoughts..</h2>
-        <textarea ref={inputRef} value={text} onChange={(e) => setText(e.target.value)} onKeyDown={handleKeyDown}/>
-        <h3 id="Welcome_Text">Have you completed an entry?</h3>
+        </div>
+        <div id="Writing_Thoughts_Text" className="green-outline">
+        <h3>Write down some things you learned throughout the day and have it analyzed by AI!</h3>
+        </div>
+        <div className="red-outline submission-box-container">
+        <textarea id="submission-box" ref={inputRef} value={text} onChange={(e) => setText(e.target.value)} onKeyDown={handleKeyDown} 
+        placeholder="Example: It was a bad day, my teacher didn't believe me that my dog ate my online essay."/>
         <form onSubmit={handleSubmission}>
           {/* Submission form fields */}
-          <Button type="button" onClick={() => handleSubmission(null, 'analyze')}>AnalyzeMe</Button>
-          <Button type="submit">Go to Entries</Button>
+          <div className="Submission_Button_Container">
+          <Button type="button" className="linky-button" onClick={() => handleSubmission(null, 'analyze')}>AnalyzeMe</Button>
+          <Button type="submit" className="linky-button">Go to Entries</Button>
+          </div>
         </form>
+        </div>
       </div>
   );
 };

@@ -142,6 +142,10 @@ body {
   border: 1px solid red;
 }
 
+.green-outline {
+  border: 1px solid green;
+}
+
 #Welcome_Text {
     color: aliceblue;
 }
@@ -273,8 +277,103 @@ body {
 .submission-container {
   display: flex;
   flex-direction: column;
-  height: 70vh;
+  height: 75vh;
   width: 75vw;
+}
+
+.submission-box-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+}
+
+@media (max-width: 768px) {
+  .submission-box-container {
+    display: flex;
+    border-color: yellow;
+    justify-content: center;
+    align-items: center;
+    height: 48vh;
+    flex-direction: column;
+  }
+}
+
+/* Problems with submission-text-container and Writing thoughts below text.
+Think about restarting and changing submission-text-container styling, something
+could be off with it */
+.submission-text-container {
+  display: flex;
+  height: 50vh;
+  flex-direction: column;
+  color: white;
+  justify-content: flex-start;
+  position: relative;
+  padding: 20px;
+}
+
+#Writing_Thoughts_Text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  padding: 20px;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  #Writing_Thoughts_Text{
+    text-align: center;
+    padding: 5px;
+    margin: 5px;
+  }
+}
+@media (max-width: 768px) {
+  #Username_Text{
+    text-align: center;
+    padding: 5px;
+    margin: 5px;
+  }
+}
+
+.Submission_Button_Container {
+  border-color: #7439db;
+  padding: 20px;
+  
+}
+
+
+#submission-box {
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 3px solid #ccc;
+  border-radius: 4px;
+  background-color: rgba(183, 176, 176, 0.7);
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  resize: none;
+  height: 40vh;
+  width: 35vw;
+}
+
+#submission-box::placeholder {
+  color: #7439db; /* or any other color you prefer */
+}
+
+@media (max-width: 768px) {
+  #submission-box {
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: rgba(183, 176, 176, 0.7);
+  font-size: 16px;
+  resize: none;
+  height: 35vh;
+  width: 60vw;
+ }
 }
 
 
