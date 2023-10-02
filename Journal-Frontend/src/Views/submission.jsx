@@ -171,10 +171,13 @@ const Submission = () => {
   return (
       <div className="red-outline submission-container">
         <div id="Username_Text" className="red-outline">
-        <h1 id="Welcome_Text">Welcome {username}!</h1>
+        <h1>Welcome {username}!</h1>
         </div>
         <div id="Writing_Thoughts_Text" className="green-outline">
-        <h3>Write down some things you learned throughout the day and have it analyzed by AI!</h3>
+        <h4>Instructions:</h4>
+        <h6>First, write down some things you learned or thought throughout the day</h6>
+        <h6>Then, press AnalyzeMe to talk about them with AI or Press EnterMe to jump ahead to your previous notes</h6>
+        <h6>Both options will save your note, have fun!</h6>
         </div>
         <div className="red-outline submission-box-container">
         <textarea id="submission-box" ref={inputRef} value={text} onChange={(e) => setText(e.target.value)} onKeyDown={handleKeyDown} 
@@ -183,7 +186,7 @@ const Submission = () => {
           {/* Submission form fields */}
           <div className="Submission_Button_Container">
           <Button type="button" className="linky-button" onClick={() => handleSubmission(null, 'analyze')}>AnalyzeMe</Button>
-          <Button type="submit" className="linky-button">Go to Entries</Button>
+          <Button type="submit" className="linky-button">Enter Me</Button>
           </div>
         </form>
         </div>

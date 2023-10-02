@@ -152,6 +152,7 @@ body {
 
 .semi-bold {
   font-weight: 500;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
 /* CheckBox */
@@ -317,9 +318,11 @@ could be off with it */
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   color: white;
   padding: 20px;
   font-weight: bold;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
 @media (max-width: 768px) {
@@ -337,10 +340,17 @@ could be off with it */
   }
 }
 
+#Username_Text {
+  color: white;
+  font-weight: bold;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+
+
 .Submission_Button_Container {
   border-color: #7439db;
   padding: 20px;
-  
 }
 
 
@@ -349,17 +359,18 @@ could be off with it */
   box-sizing: border-box;
   border: 3px solid #ccc;
   border-radius: 4px;
-  background-color: rgba(183, 176, 176, 0.7);
+  background-color: rgba(255, 255, 255, 0.7);
   font-size: 16px;
   font-weight: bold;
-  color: white;
+  color: #7439db;
   resize: none;
   height: 40vh;
   width: 35vw;
 }
 
 #submission-box::placeholder {
-  color: #7439db; /* or any other color you prefer */
+  color: #7439db;
+  font-weight: bold;
 }
 
 @media (max-width: 768px) {
@@ -368,7 +379,7 @@ could be off with it */
   box-sizing: border-box;
   border: 2px solid #ccc;
   border-radius: 4px;
-  background-color: rgba(183, 176, 176, 0.7);
+  background-color: rgba(255, 255, 255, 0.7);
   font-size: 16px;
   resize: none;
   height: 35vh;

@@ -32,6 +32,16 @@ const CombinedForm = () => {
     progress: undefined,
   };
 
+  const toastOptionsLong = {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  };
+
   const validateEmail = (email) => {
     const re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
     return re.test(String(email).toLowerCase());
@@ -62,7 +72,7 @@ const CombinedForm = () => {
         toast.error('Almost there! Please set a password to secure your account.', toastOptions);
         return;
       } else if (!agreeToTerms) { 
-        toast.error('By agreeing, you authorize JournalMe to store your logs for only you to see.', toastOptions);
+        toast.error('By agreeing, you authorize JournalMe to store your logs for only you and the service to see.', toastOptionsLong);
         return;
       }
     }
@@ -184,7 +194,7 @@ const CombinedForm = () => {
                       <Form.Check
                         className="custom-checkbox" 
                         type="checkbox"
-                        label={<span className="semi-bold">Allow JournalMe to use Data for the purpose of providing the service</span>}
+                        label={<span className="semi-bold">Allow JournalMe to use your Data for the purpose of a personalized service</span>}
                         checked={agreeToTerms} 
                         onChange={() => setAgreeToTerms(!agreeToTerms)}
                       />
@@ -192,7 +202,7 @@ const CombinedForm = () => {
                   </Row>
                   )}
                     <Col xs={12} className="form-control-margin">
-                        <Button type="submit" className="login-button linky-button">{isLogin ? 'Login' : 'Signup'}</Button>
+                        <Button type="submit" className="login-button linky-button">{isLogin ? 'Enter' : 'Signup'}</Button>
                     </Col>
                 </Row>
             </Form>
