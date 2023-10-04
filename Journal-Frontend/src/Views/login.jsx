@@ -202,7 +202,7 @@ const CombinedForm = () => {
                   </Row>
                   )}
                     <Col xs={12} className="form-control-margin">
-                        <Button type="submit" className="login-button linky-button">{isLogin ? 'Enter' : 'Signup'}</Button>
+                        <Button type="submit" id="centeredButton" className="login-button linky-button">{isLogin ? 'Start Journaling' : 'Signup'}</Button>
                     </Col>
                 </Row>
             </Form>

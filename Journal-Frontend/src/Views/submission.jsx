@@ -170,13 +170,13 @@ const Submission = () => {
 
   return (
       <div className="red-outline submission-container">
-        <div id="Username_Text" className="red-outline">
-        <h1>Welcome {username}!</h1>
+        <div className="red-outline">
+        <h1 id="Username_Text">Welcome <span className="shimmer-effect">{username}</span>!</h1>
         </div>
         <div id="Writing_Thoughts_Text" className="green-outline">
         <h4>Instructions:</h4>
         <h6>First, write down some things you learned or thought throughout the day</h6>
-        <h6>Then, press AnalyzeMe to talk about them with AI or Press EnterMe to jump ahead to your previous notes</h6>
+        <h6>Then, press AnalyzeMe to talk about them with AI or Press NoteMe to jump ahead to your previous notes</h6>
         <h6>Both options will save your note, have fun!</h6>
         </div>
         <div className="red-outline submission-box-container">
@@ -186,7 +186,7 @@ const Submission = () => {
           {/* Submission form fields */}
           <div className="Submission_Button_Container">
           <Button type="button" className="linky-button" onClick={() => handleSubmission(null, 'analyze')}>AnalyzeMe</Button>
-          <Button type="submit" className="linky-button">Enter Me</Button>
+          <Button type="submit" className="linky-button">NoteMe</Button>
           </div>
         </form>
         </div>
