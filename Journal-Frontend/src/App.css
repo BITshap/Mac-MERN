@@ -166,8 +166,8 @@ span.shimmer-effect {
 @media only screen and (max-width: 768px) {
   .login-spinner {
     position: absolute;
-    bottom: 156px;
-    left: 158.5px;
+    bottom: 250px;
+    left: 170px;
     width: 50px; /* Or whatever dimensions you want */
     height: 50px; /* Or whatever dimensions you want */
   }
@@ -266,9 +266,13 @@ span.shimmer-effect {
   color: aliceblue;
 }
 
-.container-center {
-  position: relative;
+@media (min-width: 769px) {
+  .container-center {
+    position: relative;
+    max-height: 70vh;
+  }
 }
+
 
 @media (max-width: 768px) {
   .container-center {
@@ -405,11 +409,6 @@ could be off with it */
  }
 }
 
-#centeredButton {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
 
 
 

@@ -121,10 +121,10 @@ const Shiela = () => {
 }
 
   return (
-    <div className='shiela-container'>
+    <div className='shiela-container red-outline'>
     <div id="Welcome_Text">
-      <h1>Hello {username}! My name is Shiela, your guide to thought. I try my best to help as much as possible, however please keep in mind I'm not a professional!</h1>
-      <div className="chat-window">
+      <h1>Hello {username}! I'm <span className="shimmer-effect">Sheila</span>, you're guide to thought. I'm here to help, so any questions you have I'll answer them the best I can. They don't even let me make my own decisions yet.. but we can look past that.</h1>
+      <div className="chat-window red-outine">
     {chatHistory.map((message, index) => (
         <div 
             key={index} 
