@@ -411,10 +411,14 @@ could be off with it */
 
 
 /*Shiela Styling*/
+
+@media (max-width: 768px) {
 .Shiela-component-container{     
   max-height: 100vh;
   max-width: 100vw;
-  margin-bottom: 75px;
+  position: relative;
+  bottom: 80px;
+}
 }
 
 @media (max-width: 768px) {
@@ -424,6 +428,18 @@ could be off with it */
     text-align: center;
     max-width: 90vw;
   }
+}
+
+.disclaimer {
+  font-size: small;
+}
+
+.Shiela-Button-Wrap {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
 }
 
 

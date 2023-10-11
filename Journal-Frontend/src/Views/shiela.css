@@ -3,6 +3,7 @@
     background-size: cover;
     background-position: center;
     min-height: 100vh;
+    min-width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -11,13 +12,13 @@
   }
 
   .chat-window {
-    max-width: 600px;
-    margin: 20px auto;
+    max-width: 675px;
+    margin: 3px auto;
     padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
+    padding-bottom: 30px;
     overflow-y: auto; /* In case the chat becomes lengthy */
-    max-height: 400px; /* Set this to a value that works for your layout */
+    max-height: 300px;
+    opacity: .9; 
 }
 
 .message {
@@ -29,11 +30,13 @@
 .message.assistant {
     background-color: darkgrey; /* Gray */
     text-align: left;
+    font-weight: 400;
 }
 
 .message.user {
     background-color: blue; /* Light Blue */
     text-align: right;
+    font-weight: 400;
 }
 
 .message-name {

@@ -122,25 +122,29 @@ const Shiela = () => {
 
   return (
     <div className='shiela-container red-outline'>
-    <div className="Shiela-component-container red-outline" id="Welcome_Text">
-      <h1 className='Shiela-Text-Container red-outline'>Hello {username}! I'm <span className="shimmer-effect">Sheila</span>, you're guide to thought. I'm here to help, so any questions you have I'll answer them the best I can. They don't even let me make my own decisions yet.. but we can look past that.</h1>
-      <div className="chat-window red-outine">
-    {chatHistory.map((message, index) => (
-        <div 
-            key={index} 
-            className={`message ${message.role}`}
-        >
-            {message.role === 'assistant' && <span className="message-name">Shiela: </span>}
-            {message.content}
+      <div className="Shiela-component-container red-outline" id="Welcome_Text">
+      <div className='Shiela-Text-Container red-outline'>
+      <h3>Hello {username}! I'm <span className="shimmer-effect">Sheila</span>, your guide to thought. They don't even let me make my own decisions yet... I'd appreciate it if we could pretend I do...</h3>
+      <p className="disclaimer">Sheila is for entertainment purposes only.</p>
+      </div>
+        <div className='Shiela-Window-Container green-outline'>
+          <div className="chat-window red-outine">
+              {chatHistory.map((message, index) => (
+            <div key={index} className={`message ${message.role}`}>
+                {message.role === 'assistant' && <span className="message-name">Shiela: </span>}
+                {message.content}
+              </div>
+              ))}
+          </div>
+            <div className="Shiela-Button-Wrap green-outline">
+                  <input value={userInput} onChange={e => setUserInput(e.target.value)} onKeyDown={handleKeyDown} placeholder="Continue to chat.."/>
+                  <Button onClick={sendMessageToShiela} disabled={loading}>Send</Button>
+            </div>
+               <div id="Custom_Button">
+                    <Button type="button" onClick={() =>  navigate(`/${username}/logs`, { state: { username, userId} })}>Past Entries</Button>
+              </div>
         </div>
-    ))}
-    </div>
-      <input value={userInput} onChange={e => setUserInput(e.target.value)} onKeyDown={handleKeyDown} placeholder="Type your message..."/>
-      <Button onClick={sendMessageToShiela} disabled={loading}>Send</Button>
-    <div id="Custom_Button">
-        <Button type="button" onClick={() =>  navigate(`/${username}/logs`, { state: { username, userId} })}>Past Entries</Button>
-    </div>
-    </div>
+      </div>
     </div>
   );
 };

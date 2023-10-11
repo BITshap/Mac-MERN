@@ -176,8 +176,8 @@ const Submission = () => {
         <div id="Writing_Thoughts_Text" className="green-outline">
         <h4>Instructions:</h4>
         <h6>First, write down some things you learned or thought throughout the day</h6>
-        <h6>Then, press AnalyzeMe to talk about them with AI or Press NoteMe to jump ahead to your previous notes</h6>
-        <h6>Both options will save your note, have fun!</h6>
+        <h6>Press AnalyzeMe to talk about them with AI or Press NoteMe to jump ahead to your previous notes</h6>
+        <h6>Both options will save your note.</h6>
         </div>
         <div className="red-outline submission-box-container">
         <textarea id="submission-box" ref={inputRef} value={text} onChange={(e) => setText(e.target.value)} onKeyDown={handleKeyDown} 
