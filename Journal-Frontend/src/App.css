@@ -410,6 +410,23 @@ could be off with it */
 }
 
 
+/*Shiela Styling*/
+.Shiela-component-container{     
+  max-height: 100vh;
+  max-width: 100vw;
+  margin-bottom: 75px;
+}
+
+@media (max-width: 768px) {
+  .Shiela-Text-Container {
+    margin: auto;
+    font-size: x-large;
+    text-align: center;
+    max-width: 90vw;
+  }
+}
+
+
 
 
 /* play around with max-height, could be a method to not have singup and login expand upon tab switch*/
