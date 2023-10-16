@@ -67,9 +67,9 @@ const Users = () => {
 
 
   return (
-    <div>
-    <div>
-    <h2 id="Welcome_Text">Top Users</h2>
+    <div className="users-container">
+    <div className="usernames">
+    <h2 id="Welcome_Text"><span className="shimmer-effect">Top Writers</span></h2>
       {loading ? (
         <RocketSpinner />
       ) : error ? (
@@ -96,10 +96,11 @@ const Users = () => {
       )}
     </div>
     <div>
-      <Button type="button" onClick={handleBackToLogs}>
+      <Button className="linky-button" type="button" onClick={handleBackToLogs}>
         Logs
       </Button>
     </div>
+    <p id="thank-you">{username}, thank you for the support. - Nick</p>
     </div>
   )
 };

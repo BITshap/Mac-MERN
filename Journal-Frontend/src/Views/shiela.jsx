@@ -121,13 +121,13 @@ const Shiela = () => {
 }
 
   return (
-    <div className='shiela-container red-outline'>
-      <div className="Shiela-component-container red-outline" id="Welcome_Text">
-      <div className='Shiela-Text-Container red-outline'>
-      <h3>Hello {username}! I'm <span className="shimmer-effect">Sheila</span>, your guide to thought. They don't even let me make my own decisions yet... I'd appreciate it if we could pretend I do...</h3>
+    <div className='shiela-container'>
+      <div className="Shiela-component-container" id="Welcome_Text">
+      <div className='Shiela-Text-Container'>
+      <h3>Hello {username}! I'm <span className="shimmer-effect">Sheila AI</span>, your guide to thought. Let's chat.</h3>
       <p className="disclaimer">Sheila is for entertainment purposes only.</p>
       </div>
-        <div className='Shiela-Window-Container green-outline'>
+        <div className='Shiela-Window-Container'>
           <div className="chat-window red-outine">
               {chatHistory.map((message, index) => (
             <div key={index} className={`message ${message.role}`}>
@@ -136,13 +136,11 @@ const Shiela = () => {
               </div>
               ))}
           </div>
-            <div className="Shiela-Button-Wrap green-outline">
-                  <input value={userInput} onChange={e => setUserInput(e.target.value)} onKeyDown={handleKeyDown} placeholder="Continue to chat.."/>
-                  <Button onClick={sendMessageToShiela} disabled={loading}>Send</Button>
+            <div className="Shiela-Button-Wrap">
+                  <input id="text-box" value={userInput} onChange={e => setUserInput(e.target.value)} onKeyDown={handleKeyDown} placeholder="Continue to chat.."/>
+                  <Button className="linky-button" onClick={sendMessageToShiela} disabled={loading}>Send</Button>
+                  <Button type="button" className="linky-button" onClick={() =>  navigate(`/${username}/logs`, { state: { username, userId} })}>Logs</Button>
             </div>
-               <div id="Custom_Button">
-                    <Button type="button" onClick={() =>  navigate(`/${username}/logs`, { state: { username, userId} })}>Past Entries</Button>
-              </div>
         </div>
       </div>
     </div>

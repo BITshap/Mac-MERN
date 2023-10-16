@@ -158,10 +158,10 @@ const CombinedForm = () => {
     <>
     <ToastContainer />
     {/* Main Content */}
-    <Container className="container-center red-outline">
+    <Container className="container-center">
       <Row className="mb-3">
         <Col xs={12} md={6} className="form-column mb-300 mb-275-lg">
-            <h1 id="Welcome_Text" className="center-text">{isLogin ? 'Welcome back to ' : 'SignUp for '} <span className="shimmer-effect">JournalMe</span></h1>
+            <h1 id="Welcome_Text" className="center-text">{isLogin ? 'Welcome to ' : 'SignUp for '} <span className="shimmer-effect">JournalMe</span></h1>
             <Nav className="justify-content-center custom-nav" activeKey={isLogin ? "/login" : "/signup"} onSelect={(selectedKey) => setIsLogin(selectedKey === "/login")}>
                 <Nav.Item>
                     <Nav.Link eventKey="/login">Login</Nav.Link>
@@ -208,7 +208,7 @@ const CombinedForm = () => {
             </Form>
         </Col>
         {/* Spinner */}
-        <Col xs={12} md={6} className="login-spinner align-items-center d-flex justify-content-center red-outline">
+        <Col xs={12} md={6} className="login-spinner align-items-center d-flex justify-content-center">
             {showLoader && 
 
                 <RocketSpinner onAnimationComplete={() => {
@@ -218,6 +218,7 @@ const CombinedForm = () => {
             }
         </Col>
       </Row>
+      <p id="contact_text">Message nicholasshapoff@gmail.com or dm insta: https://www.instagram.com/nick.shapoff/ with any questions or creepy bugs</p>
     </Container>
     </>
 );

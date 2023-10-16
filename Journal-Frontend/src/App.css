@@ -4,13 +4,13 @@
     background-image: url('./Images/loginpaper.jpg');/* Replace with the actual path to your image */
     background-size: cover;
     background-position: center;
+    background-attachment: fixed;
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 0;
     padding: 0;
-    border: 3px solid green;
   }
 
 html,
@@ -269,7 +269,7 @@ span.shimmer-effect {
 @media (min-width: 769px) {
   .container-center {
     position: relative;
-    max-height: 70vh;
+    max-height: 50vh;
   }
 }
 
@@ -340,6 +340,7 @@ could be off with it */
   padding: 20px;
   font-weight: bold;
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  text-align: center;
 }
 
 @media (max-width: 768px) {
@@ -360,6 +361,8 @@ could be off with it */
 
 #Username_Text {
   color: aliceblue;
+  justify-content: center;
+  text-align: center;
 }
 
 .Submission_Button_Container {
@@ -370,6 +373,7 @@ could be off with it */
   margin: 5px;
   gap: 120px;
 }
+
 .Submission_Button_Container > button {
   min-width: 100px; /* Minimum width */
   flex-grow: 1;
@@ -388,6 +392,8 @@ could be off with it */
   resize: none;
   height: 40vh;
   width: 35vw;
+  position: relative;
+  bottom: 10px;
 }
 
 #submission-box::placeholder {
@@ -410,41 +416,106 @@ could be off with it */
 }
 
 
-/*Shiela Styling*/
-
-@media (max-width: 768px) {
-.Shiela-component-container{     
-  max-height: 100vh;
-  max-width: 100vw;
+.Shiela-component-container {
   position: relative;
+  margin: 30px;
   bottom: 80px;
-}
-}
-
-@media (max-width: 768px) {
-  .Shiela-Text-Container {
-    margin: auto;
-    font-size: x-large;
-    text-align: center;
-    max-width: 90vw;
-  }
-}
-
-.disclaimer {
-  font-size: small;
 }
 
 .Shiela-Button-Wrap {
   display: flex;
-  flex-direction: row;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  margin-right: 50px;
+  margin-left: 50px;
+  margin-top: 10px;
   margin-bottom: 10px;
+  gap: 20px;
+}
+
+@media (max-width: 768px) { /* or another breakpoint */
+  .Shiela-Button-Wrap {
+      margin-right: 5px;
+      margin-left: 5px;
+      position: relative;
+      top: 10px;
+  }
 }
 
 
+#text-box {
+  max-width: 300px;
+}
+
+.logs-container{
+  max-width: 90vw;
+}
+
+/* Default styles for larger screens */
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.pagination-button,
+#Page_Text {
+  margin: 0 10px;
+}
+
+/* Styles for mobile screens */
+@media (max-width: 768px) { /* Adjust 768px to your preferred breakpoint */
+  .pagination-controls {
+      margin-top: 10px;
+      gap: 4px;
+     /* Reduce the margin-top for mobile */
+  }
+
+  .pagination-button,
+  #Page_Text {
+      margin: 0 3px;
+       /* Reduce the horizontal margin for mobile */
+  }
+}
+
+.spacing-controls {
+  margin: 10px;
+  gap: 10px;
+}
+
+.users-container{
+  min-height: 60vh;
+  min-width: 60vw;
+  display: flex; 
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  bottom: 100px;
+}
+
+.usernames {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.usernames li{
+  margin-bottom: 5px;
+}
 
 
+#thank-you{
+  position: relative;
+  top: 300px;
+  color: white;
+}
+
+#contact_text{
+  z-index: -1;
+}
 /* play around with max-height, could be a method to not have singup and login expand upon tab switch*/
 
 

@@ -85,8 +85,8 @@ const handleBackToLogs = () => {
 };
 
 return (
-  <div>
-    <h1 id="Welcome_Text">{username}'s most recent entries:</h1>
+  <div className="logs-container">
+    <h1 id="Welcome_Text"><span className="shimmer-effect">{username}'s</span> most recent entries:</h1>
     <h2 id="Welcome_Text">Your individual score too: {score}</h2>
     {loading ? (
       <div className="spinner-container">
@@ -99,7 +99,7 @@ return (
           const shouldTruncate = isLongLog && !showFullLogs[index];
 
           return (
-            <div className="logs-container">
+            <div className="logs-contain">
             <div key={index} className="log-entry">
               <span id="Welcome_Text">
                 {shouldTruncate ? `${log.substring(0, 100)}...` : log}
@@ -118,19 +118,19 @@ return (
           );
           
         })}
-        <div className="pagination-controls">
-          <Button className="pagination-button" onClick={() => setCurrentPage(1)}>Recent Entries</Button>
-          <Button className="pagination-button" onClick={() => setCurrentPage(prev => (prev === 1 ? totalPages : prev - 1))}>Previous</Button>
-          <span id="Page_Text">Page {currentPage} of {totalPages}</span>
-          <Button className="pagination-button" onClick={() => setCurrentPage(prev => (prev === totalPages ? 1 : prev + 1))}>Next</Button>
-          <Button className="pagination-button" onClick={() => setCurrentPage(totalPages)}>First Entries</Button>
-        </div>
+       <div className="pagination-controls">
+    <Button className="pagination-button" onClick={() => setCurrentPage(1)}>Recent Entries</Button>
+    <Button className="pagination-button" onClick={() => setCurrentPage(prev => (prev === 1 ? totalPages : prev - 1))}>Previous</Button>
+    <span id="Page_Text">Page {currentPage} of {totalPages}</span>
+    <Button className="pagination-button" onClick={() => setCurrentPage(prev => (prev === totalPages ? 1 : prev + 1))}>Next</Button>
+    <Button className="pagination-button" onClick={() => setCurrentPage(totalPages)}>First Entries</Button>
+      </div>
       </>
     )}
-    <Button type="button" onClick={handleBackToLogs}>
-        Journaling
-      </Button>
-      <Button onClick={() => navigate('/Universe', { state: { userId, username, score } })}>Universe</Button>
+    <div className="pagination-controls spacing-controls">
+    <Button  type="button" onClick={handleBackToLogs}>Journaling</Button>
+    <Button  onClick={() => navigate('/Universe', { state: { userId, username, score } })}>Universe</Button>
+    </div>
   </div>
 );
 };

@@ -131,7 +131,7 @@ const Submission = () => {
     console.log("useEffect for typing is running");
     if (loading) {
         let i = 0;
-        const originalText = "Obtaining the most optimal response for you...   "; //care for trailing spaces. Working as of 08/29/23
+        const originalText = "Building the most optimal response for you...  "; //care for trailing spaces. Working as of 08/29/23
         const interval = setInterval(() => {
             if (i < originalText.length) {
                 setTypedText((prevText) => prevText + originalText[i - 1]);
@@ -147,7 +147,7 @@ const Submission = () => {
     }, [loading]);
 
     useEffect(() => {
-      if (apiCompleted && typedText === "Obtaining the most optimal response for you...   ") { //care for trailing spaces. Working as of 08/29/23
+      if (apiCompleted && typedText === "Building the most optimal response for you...  ") { //care for trailing spaces. Working as of 08/29/23
           navigate('/sheila-response', {
               state: { responseText: apiResponse, username, userId, text },
           });
@@ -169,24 +169,24 @@ const Submission = () => {
   }
 
   return (
-      <div className="red-outline submission-container">
-        <div className="red-outline">
+      <div className="submission-container">
+        <div>
         <h1 id="Username_Text">Welcome <span className="shimmer-effect">{username}</span>!</h1>
         </div>
-        <div id="Writing_Thoughts_Text" className="green-outline">
+        <div id="Writing_Thoughts_Text">
         <h4>Instructions:</h4>
-        <h6>First, write down some things you learned or thought throughout the day</h6>
+        <h6>First, write down some things you learned throughout the day</h6>
         <h6>Press AnalyzeMe to talk about them with AI or Press NoteMe to jump ahead to your previous notes</h6>
         <h6>Both options will save your note.</h6>
         </div>
-        <div className="red-outline submission-box-container">
+        <div className="submission-box-container">
         <textarea id="submission-box" ref={inputRef} value={text} onChange={(e) => setText(e.target.value)} onKeyDown={handleKeyDown} 
         placeholder="Example: It was a bad day, my teacher didn't believe me that my dog ate my online essay."/>
         <form onSubmit={handleSubmission}>
           {/* Submission form fields */}
           <div className="Submission_Button_Container">
-          <Button type="button" className="linky-button" onClick={() => handleSubmission(null, 'analyze')}>AnalyzeMe</Button>
-          <Button type="submit" className="linky-button">NoteMe</Button>
+          <Button className="linky-button" type="button" onClick={() => handleSubmission(null, 'analyze')}>AnalyzeMe</Button>
+          <Button className="linky-button" type="submit" >NoteMe</Button>
           </div>
         </form>
         </div>

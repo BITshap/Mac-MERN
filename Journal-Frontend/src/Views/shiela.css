@@ -1,9 +1,8 @@
 .shiela-container {
-    background-image: url('../Images/Sheila.jpg');/* Adjust this path as needed */
     background-size: cover;
     background-position: center;
     min-height: 100vh;
-    min-width: 100vw;
+    max-width: 70vw;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,8 +16,8 @@
     padding: 20px;
     padding-bottom: 30px;
     overflow-y: auto; /* In case the chat becomes lengthy */
-    max-height: 300px;
-    opacity: .9; 
+    max-height: 400px;
+    opacity: .96; 
 }
 
 .message {
@@ -55,4 +54,8 @@ input {
     margin-right: 10px;
     border-radius: 8px;
     border: 1px solid #ccc;
+}
+
+.Shiela-Text-Container{
+    text-align: center;
 }
