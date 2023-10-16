@@ -411,7 +411,7 @@ could be off with it */
   font-size: 16px;
   resize: none;
   height: 35vh;
-  width: 60vw;
+  width: 65vw;
  }
 }
 
@@ -509,13 +509,18 @@ could be off with it */
 
 #thank-you{
   position: relative;
-  top: 300px;
+  top: 290px;
   color: white;
 }
 
 #contact_text{
+  position: relative;
   z-index: -1;
+  text-align: center;
+  top: -45px;
 }
+
+
 /* play around with max-height, could be a method to not have singup and login expand upon tab switch*/
 
 

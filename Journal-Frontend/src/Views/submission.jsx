@@ -111,7 +111,7 @@ const Submission = () => {
         
         setApiResponse(response.data);
         setApiCompleted(true);
-        if (typedText === "Obtaining the most optimal response for you...   ") { //care for trailing spaces. Working as of 08/29/23
+        if (typedText === "Crafting the best response for you...   ") { //care for trailing spaces. Working as of 08/29/23
           setLoading(false); 
         }  
     } else {
@@ -131,7 +131,7 @@ const Submission = () => {
     console.log("useEffect for typing is running");
     if (loading) {
         let i = 0;
-        const originalText = "Building the most optimal response for you...  "; //care for trailing spaces. Working as of 08/29/23
+        const originalText = "Crafting the best response for you...  "; //care for trailing spaces. Working as of 08/29/23
         const interval = setInterval(() => {
             if (i < originalText.length) {
                 setTypedText((prevText) => prevText + originalText[i - 1]);
@@ -147,7 +147,7 @@ const Submission = () => {
     }, [loading]);
 
     useEffect(() => {
-      if (apiCompleted && typedText === "Building the most optimal response for you...  ") { //care for trailing spaces. Working as of 08/29/23
+      if (apiCompleted && typedText === "Crafting the best response for you...  ") { //care for trailing spaces. Working as of 08/29/23
           navigate('/sheila-response', {
               state: { responseText: apiResponse, username, userId, text },
           });

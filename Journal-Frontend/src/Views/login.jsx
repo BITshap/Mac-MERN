@@ -218,8 +218,8 @@ const CombinedForm = () => {
             }
         </Col>
       </Row>
-      <p id="contact_text">Message nicholasshapoff@gmail.com or dm insta: https://www.instagram.com/nick.shapoff/ with any questions or creepy bugs</p>
-    </Container>
+      <p id="contact_text"> Reach out with any questions or bugs! <a href="mailto:nicholasshapoff@gmail.com">nicholasshapoff@gmail.com</a> insta: <a href="https://www.instagram.com/nick.shapoff/" target="_blank" rel="noopener noreferrer">nick.shapoff</a></p>    
+</Container>
     </>
 );
 };

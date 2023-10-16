@@ -69,7 +69,7 @@ const Users = () => {
   return (
     <div className="users-container">
     <div className="usernames">
-    <h2 id="Welcome_Text"><span className="shimmer-effect">Top Writers</span></h2>
+    <h2 id="Welcome_Text"><span className="shimmer-effect">Thickest Journals</span></h2>
       {loading ? (
         <RocketSpinner />
       ) : error ? (
@@ -100,7 +100,8 @@ const Users = () => {
         Logs
       </Button>
     </div>
-    <p id="thank-you">{username}, thank you for the support. - Nick</p>
+    <p id="thank-you">{username}, thank you for the support. -Nick</p>
+    <p id="contact_text"> Reach out with any questions or bugs! <a href="mailto:nicholasshapoff@gmail.com">nicholasshapoff@gmail.com</a> insta: <a href="https://www.instagram.com/nick.shapoff/" target="_blank" rel="noopener noreferrer">nick.shapoff</a></p>
     </div>
   )
 };
