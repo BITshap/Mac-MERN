@@ -493,7 +493,21 @@ could be off with it */
   justify-content: center;
   align-items: center;
   position: relative;
+  bottom: 120px;
+}
+
+@media (max-width: 768px) {
+.users-container{
+  min-height: 60vh;
+  min-width: 60vw;
+  display: flex; 
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  position: relative;
   bottom: 100px;
+}
 }
 
 .usernames {
@@ -504,13 +518,6 @@ could be off with it */
 
 .usernames li{
   margin-bottom: 5px;
-}
-
-
-#thank-you{
-  position: relative;
-  top: 290px;
-  color: white;
 }
 
 #contact_text{

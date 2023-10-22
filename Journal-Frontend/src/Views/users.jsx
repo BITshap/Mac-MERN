@@ -4,6 +4,8 @@ import {Button} from 'react-bootstrap'
 import {toast} from 'react-toastify';
 import axios from 'axios';
 import RocketSpinner from './RocketSpinner';
+import './users.css'; // Import the new stylesheet
+
 
 const Users = () => {
   const [documents, setDocuments] = useState([]);
@@ -67,9 +69,12 @@ const Users = () => {
 
 
   return (
+    <div className="image-container">
+      <p id="thank-you">{username}, thank you for the support. -Nick</p>
     <div className="users-container">
     <div className="usernames">
-    <h2 id="Welcome_Text"><span className="shimmer-effect">Thickest Journals</span></h2>
+    <h2 id="Welcome_Text"><span className="shimmer-effect">Top Journals:</span></h2>
+
       {loading ? (
         <RocketSpinner />
       ) : error ? (
@@ -100,8 +105,8 @@ const Users = () => {
         Logs
       </Button>
     </div>
-    <p id="thank-you">{username}, thank you for the support. -Nick</p>
     <p id="contact_text"> Reach out with any questions or bugs! <a href="mailto:nicholasshapoff@gmail.com">nicholasshapoff@gmail.com</a> insta: <a href="https://www.instagram.com/nick.shapoff/" target="_blank" rel="noopener noreferrer">nick.shapoff</a></p>
+    </div>
     </div>
   )
 };

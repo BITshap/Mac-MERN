@@ -25,7 +25,8 @@ mongoose.connect(URL, {
   });
 
 app.use(express.static("public"));
-app.use(cors());
+app.use(cors({
+}));
 app.use(express.json());
 
 const verifyToken = (req, res, next) => {

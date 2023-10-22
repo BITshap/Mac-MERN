@@ -1,0 +1,28 @@
+.image-container {
+    position: relative; /* Ensure the container has relative positioning */
+    min-height: 100vh; /* Adjust as needed */
+    background-image: url('../Images/loginpaper.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+  }
+  
+  #thank-you{
+    position: absolute; /* Use absolute positioning for "thank-you" */
+    bottom: 20px; /* Adjust the distance from the bottom as needed */
+    color: white;
+  }
+
+  @media (max-width: 768px) {
+    #thank-you{
+        position: absolute; /* Use absolute positioning for "thank-you" */
+        bottom: 50px; /* Adjust the distance from the bottom as needed */
+        color: white;
+      }
+  }
+  
