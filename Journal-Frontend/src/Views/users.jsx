@@ -73,7 +73,7 @@ const Users = () => {
       <p id="thank-you">{username}, thank you for the support. -Nick</p>
     <div className="users-container">
     <div className="usernames">
-    <h2 id="Welcome_Text"><span className="shimmer-effect">Top Journals:</span></h2>
+    <h2 id="Welcome_Text"><span className="shimmer-effect">Thickest Journals:</span></h2>
 
       {loading ? (
         <RocketSpinner />
