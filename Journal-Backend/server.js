@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require('cors');
+const rateLimit = require('express-rate-limit');
 const app = express();
 const mongoose = require("mongoose");
 const jwt = require('jsonwebtoken');
@@ -24,10 +25,21 @@ mongoose.connect(URL, {
     console.error('Failed to connect to MongoDB', error);
   });
 
+const corsOptions = {
+    origin: 'https://journalme.io', // This should be the domain of your frontend application
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+};
+
 app.use(express.static("public"));
-app.use(cors({
-}));
+app.use(cors(corsOptions));
 app.use(express.json());
+
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minute
+  max: 100 // limit each IP to 100 requests per windowMs
+});
+
+app.use(limiter);
 
 const verifyToken = (req, res, next) => {
   const token = req.headers.authorization;
