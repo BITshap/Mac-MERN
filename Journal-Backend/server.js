@@ -95,6 +95,8 @@ app.post('/Shielas-response', verifyToken, async (req, res) => {
 app.put("/users/:userId", verifyToken, userController.updateUserScore);
 
 
-app.listen(3001, () => {
-  console.log("Server started on port 3001");
+const PORT = process.env.PORT || 3001;
+
+app.listen(PORT, () => {
+  console.log(`Server started on port ${PORT}`);
 });
