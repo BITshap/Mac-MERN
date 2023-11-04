@@ -59,6 +59,11 @@ const verifyToken = (req, res, next) => {
   }
 };
 
+//API Base Route
+app.get("/", (req, res) => {
+  res.status(200).send("Welcome to the JournalMe API! We're online.");
+});
+
 // Users Routes
 app.get("/users", verifyToken, userController.getUsers);
 app.get("/top-users", userController.getTopUsers);
