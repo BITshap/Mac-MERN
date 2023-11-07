@@ -9,6 +9,9 @@
     "build": "babel src --out-dir dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "engines": {
+    "node": "21.x"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
