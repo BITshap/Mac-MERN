@@ -1,10 +1,13 @@
 const User = require('../models/user');
 const jwt = require('jsonwebtoken');
-const env = require('../.env');
 const bcrypt = require('bcrypt');
 const Filter = require('bad-words');
 
-const secret = env.secretKey;
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
+
+const secret = process.env.SECRET_KEY;
 
 // Get all users
 const getUsers = async (req, res) => {
