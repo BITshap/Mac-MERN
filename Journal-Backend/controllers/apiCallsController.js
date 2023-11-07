@@ -1,7 +1,10 @@
 const fetch = require('node-fetch')
-const env = require('../.env');
 
-const API_KEY = env.openAIkey;
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
+
+const API_KEY = process.env.OPENAI_API_KEY;
 
 async function getOpenAIResponse(text, history) {
   try {

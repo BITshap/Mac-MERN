@@ -4,13 +4,16 @@ const rateLimit = require('express-rate-limit');
 const app = express();
 const mongoose = require("mongoose");
 const jwt = require('jsonwebtoken');
-const env = require('./.env');
 
 const userController = require('./controllers/userController');
 const apiCallsController = require('./controllers/apiCallsController')
 
-const URL = env.mongoURL;
-const secret = env.secretKey;
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
+
+const URL = process.env.MONGO_URL;
+const secret = process.env.SECRET_KEY;
 //const APIKEY = env.openAiKey;
 
 // Basic connection
