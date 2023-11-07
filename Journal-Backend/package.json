@@ -6,7 +6,6 @@
   "scripts": {
     "start": "nodemon server.js",
     "dev": "npm run build && node server.js",
-    "build": "babel src --out-dir dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {
