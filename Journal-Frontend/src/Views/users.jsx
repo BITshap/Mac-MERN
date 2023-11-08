@@ -6,6 +6,8 @@ import axios from 'axios';
 import RocketSpinner from './RocketSpinner';
 import './users.css'; // Import the new stylesheet
 
+const baseUrl = process.env.REACT_APP_JOURNAL_ME_API_URL;
+console.log(baseUrl)
 
 const Users = () => {
   const [documents, setDocuments] = useState([]);
@@ -44,7 +46,7 @@ const Users = () => {
     }
 
     // Make a GET request to your backend API
-    axios.get('http://localhost:3001/top-users', {
+    axios.get(`${baseUrl}/top-users`, {
       headers: {
         Authorization: `${token}`,
       },

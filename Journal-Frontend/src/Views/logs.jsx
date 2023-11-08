@@ -5,6 +5,9 @@ import {toast} from 'react-toastify';
 import RocketSpinner from './RocketSpinner';
 import axios from 'axios';
 
+const baseUrl = process.env.REACT_APP_JOURNAL_ME_API_URL;
+console.log(baseUrl)
+
 const Logs = () => {
   const location = useLocation();
   const { username, userId } = location.state || {};
@@ -59,7 +62,7 @@ const Logs = () => {
     } else {
         const getLogs = async () => {
             try {
-                const response = await axios.get(`http://localhost:3001/users/${userId}/paged-logs?page=${currentPage}&limit=10`, {
+                const response = await axios.get(`${baseUrl}/users/${userId}/paged-logs?page=${currentPage}&limit=10`, {
                     headers: {
                         Authorization: `${token}`
                     }

@@ -7,6 +7,8 @@ import RocketSpinner from './RocketSpinner';
 import Filter from "bad-words";
 import './CombinedForm.css';
 
+const baseUrl = process.env.REACT_APP_JOURNAL_ME_API_URL;
+console.log(baseUrl)
 
 const CombinedForm = () => {
   const [isLogin, setIsLogin] = useState(true);  // Default to login
@@ -91,7 +93,7 @@ const CombinedForm = () => {
       { username, password } :
       { name, email, username, password, termsAccepted: agreeToTerms };
 
-    const url = isLogin ? 'http://localhost:3001/login' : 'http://localhost:3001/signup';
+    const url = isLogin ? `${baseUrl}/login` : `${baseUrl}/signup`;
 
     if (!isLogin) {
       setShowLoader(true);  // Show loader before signup request

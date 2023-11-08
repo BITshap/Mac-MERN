@@ -29,7 +29,7 @@ mongoose.connect(URL, {
   });
 
 const corsOptions = {
-    origin: 'https://journalme.io', // This should be the domain of your frontend application
+    origin: ['http://localhost:3000','https://journalme.io'], // This should be the domain of your frontend application
     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 };
 

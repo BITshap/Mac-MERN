@@ -26,8 +26,8 @@ async function getOpenAIResponse(text, history) {
     });
 
     console.log("Messages being sent to OpenAI:", messages);
-
-
+    console.log(API_KEY)
+    
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
       headers: {

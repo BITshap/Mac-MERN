@@ -4,6 +4,9 @@ import { toast } from 'react-toastify';
 import { Button } from 'react-bootstrap';
 import './shiela.css';
 
+const baseUrl = process.env.REACT_APP_JOURNAL_ME_API_URL;
+console.log(baseUrl)
+
 const Shiela = () => {
   const location = useLocation();
   const { username, userId, responseText, text } = location.state || {};
@@ -76,7 +79,7 @@ const Shiela = () => {
       });
 
       // Make the API call
-      const response = await fetch('http://localhost:3001/Shielas-response', {
+      const response = await fetch(`${baseUrl}/Shielas-response`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

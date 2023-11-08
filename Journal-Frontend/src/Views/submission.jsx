@@ -5,6 +5,9 @@ import {toast} from 'react-toastify';
 import RocketSpinner from './RocketSpinner';
 import axios from 'axios';
 
+const baseUrl = process.env.REACT_APP_JOURNAL_ME_API_URL;
+console.log(baseUrl)
+
 const Submission = () => {
   const location = useLocation();
   const { username, userId, score } = location.state || {};
@@ -82,7 +85,7 @@ const Submission = () => {
       const updatedTimestamps = [...user.timestamps, now]; */
 
       await axios.put(
-        `http://localhost:3001/users/${userId}`,
+        `${baseUrl}/users/${userId}`,
         { 
           score: updatedScore,
           timestamp: now,
@@ -98,7 +101,7 @@ const Submission = () => {
       if (action === 'analyze') {
         setLoading(true);
 
-        const response = await axios.post('http://localhost:3001/Shielas-response', 
+        const response = await axios.post(`${baseUrl}/Shielas-response`, 
           {
             text: text,
           },
