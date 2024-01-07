@@ -1,7 +1,7 @@
 @import "~bootstrap/dist/css/bootstrap.min.css";
 
 .app-container {
-    background-image: url('./Images/loginpaper.jpg');/* Replace with the actual path to your image */
+    background-image: url('./Images/loginpaper_compressed.jpg');/* Replace with the actual path to your image */
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
