@@ -4,7 +4,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* Adjust to use the full viewport height */
+    height: 130vh; /* Adjust to use the full viewport height */
+    background: linear-gradient(#42abff, #1a1a2e);
     color: white;
     text-align: center;
     font-family: 'Roboto', sans-serif;
@@ -34,7 +35,9 @@ a:hover {
     width: 250px; /* Adjust size as needed */
     height: 250px; /* Adjust size as needed */
     display: flex;
+    padding-top: 10px;
     justify-content: center;
     align-items: center;
     margin: auto; /* Centers the spinner in the available space */
 }
+
