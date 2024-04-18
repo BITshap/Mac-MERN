@@ -4,10 +4,12 @@ import Logs from "./Views/logs"
 import Login from "./Views/login.jsx"
 import Users from "./Views/users.jsx"
 import RocketSpinner from './Views/RocketSpinner';
+import Guts from "./Views/Guts.jsx"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import 'normalize.css';
 import './App.css';
+import './Views/Guts.css'
 
 //Lazy Load of Submission Practice
 const Submission = React.lazy(() => import ('./Views/submission'))
@@ -51,6 +53,7 @@ const App = () => {
         <ToastContainer />
         <Suspense fallback={<RocketSpinner />}>
           <Routes>
+            <Route exact path="/" element={<Guts />} />
             <Route exact path="/" element={<Login />} />
             <Route path="/Universe" element={<Users />} />
             <Route path="/submission" element={<Submission />} />

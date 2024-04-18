@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Adjust to use the full viewport height */
+    color: white;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    margin-top: -150px;
+}
+
+.content {
+    position: relative;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 24px; /* Adjust size as necessary */
+    margin: 20px;
+}
+
+a {
+    color: #FFEB3B;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.spinner-container {
+    width: 250px; /* Adjust size as needed */
+    height: 250px; /* Adjust size as needed */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto; /* Centers the spinner in the available space */
+}

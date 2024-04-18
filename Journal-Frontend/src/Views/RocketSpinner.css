@@ -112,6 +112,17 @@
     }
 } */ 
 
+
+
+
+
+
+
+
+
+
+
+
 .loader
 {
     position: relative;
@@ -278,3 +289,4 @@
 .loader span::after {
     animation: skyTransition 8s forwards 3s; /* starts the transition after 3 seconds */
 }
+
